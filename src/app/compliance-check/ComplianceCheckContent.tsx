@@ -247,7 +247,7 @@ export default function ComplianceCheckContent() {
       )}
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto mb-8 text-center">
-          <ShieldCheck className="h-12 w-12 text-[#339999] mx-auto mb-4" />
+          <img src="/logo.png" alt="H-Guardian Logo" className="h-12 w-12 mx-auto mb-4" />
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">PPE合规检查工具</h1>
           <p className="text-xl text-gray-600">
             快速获取PPE产品进入全球市场的合规报告，减少认证时间，避免合规风险。

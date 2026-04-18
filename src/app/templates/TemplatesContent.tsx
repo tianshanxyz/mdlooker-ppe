@@ -144,7 +144,7 @@ export default function TemplatesContent() {
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto mb-12 text-center">
-          <FileText className="h-12 w-12 text-[#339999] mx-auto mb-4" />
+          <img src="/logo.png" alt="H-Guardian Logo" className="h-12 w-12 mx-auto mb-4" />
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">合规文档模板库</h1>
           <p className="text-xl text-gray-600">
             经过专业律师和认证机构审核的合规文档模板，直接编辑即可使用，节省大量时间。

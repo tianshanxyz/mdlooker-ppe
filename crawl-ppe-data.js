@@ -37,18 +37,18 @@ async function generateSampleData() {
     });
   }
   
-  // 批量插入法规
-  const { error: regError, data: insertedRegs } = await supabase.from('regulations').insert(regulations).select('id, regulation_code');
+  // 批量插入法规，重复则跳过
+  const { error: regError, data: insertedRegs } = await supabase.from('regulations').insert(regulations).onConflict('regulation_code').ignore().select('id, regulation_code');
   if (regError) throw regError;
   console.log(`✅ 成功插入${insertedRegs.length}条法规数据`);
   
-  // 生成产品数据（10000条）
+  // 生成产品数据（180000条）
   const products = [];
   const productTypes = ['医用口罩', '防护口罩', 'KN95口罩', 'N95口罩', 'FFP2口罩', 'FFP3口罩', '医用防护服', '隔离衣', '一次性手套', '丁腈手套', '乳胶手套', '护目镜', '防护面罩', '防毒面具'];
   const brands = ['3M', '霍尼韦尔', '稳健医疗', '振德医疗', '鱼跃医疗', '比亚迪', '金发科技', '大胜', '朝美', '宝顺安', '南核', '思创', '代尔塔', '梅思安'];
   const manufacturers = ['湖北佳联防护用品有限公司', '稳健医疗用品股份有限公司', '振德医疗用品股份有限公司', '3M中国有限公司', '霍尼韦尔(中国)有限公司', '浙江比亚迪精密制造有限公司'];
   
-  for (let i = 0; i < 10000; i++) {
+  for (let i = 0; i < 180000; i++) {
     const productType = productTypes[Math.floor(Math.random() * productTypes.length)];
     const brand = brands[Math.floor(Math.random() * brands.length)];
     const model = `${brand.slice(0, 2).toUpperCase()}-${productType.slice(0, 2).toUpperCase()}${String(i + 1).padStart(6, '0')}`;
@@ -75,7 +75,7 @@ async function generateSampleData() {
   let totalProductsInserted = 0;
   for (let i = 0; i < products.length; i += batchSize) {
     const batch = products.slice(i, i + batchSize);
-    const { error: prodError, data: insertedProds } = await supabase.from('products').insert(batch).select('id');
+    const { error: prodError, data: insertedProds } = await supabase.from('products').insert(batch).onConflict('registration_number').ignore().select('id');
     if (prodError) {
       console.error('产品插入失败:', prodError);
       continue;
@@ -84,7 +84,7 @@ async function generateSampleData() {
     console.log(`✅ 已插入${totalProductsInserted}/10000条产品数据`);
   }
   
-  // 生成认证数据（5000条）
+  // 生成认证数据（90000条）
   const certifications = [];
   const issuingAuthorities = ['欧盟公告机构', '美国FDA', '英国UKCA认证机构', '中国药监局', '日本厚生劳动省', '韩国KFDA', 'GCC认证中心', 'SGS', 'BV', 'TÜV'];
   
@@ -94,7 +94,7 @@ async function generateSampleData() {
   const regMap = {};
   insertedRegs.forEach(r => regMap[r.regulation_code] = r.id);
   
-  for (let i = 0; i < 5000; i++) {
+  for (let i = 0; i < 90000; i++) {
     const product = allProducts[Math.floor(Math.random() * allProducts.length)];
     const certType = ['CE认证', 'FDA注册', 'UKCA认证', 'GB认证', 'PSE认证', 'KC认证', 'GCC认证'][Math.floor(Math.random() * 7)];
     const certNumber = `CERT-${String(i + 1).padStart(8, '0')}`;
@@ -118,7 +118,7 @@ async function generateSampleData() {
   let totalCertsInserted = 0;
   for (let i = 0; i < certifications.length; i += batchSize) {
     const batch = certifications.slice(i, i + batchSize);
-    const { error: certError, data: insertedCerts } = await supabase.from('certifications').insert(batch).select('id');
+    const { error: certError, data: insertedCerts } = await supabase.from('certifications').insert(batch).onConflict('certification_number').ignore().select('id');
     if (certError) {
       console.error('认证插入失败:', certError);
       continue;

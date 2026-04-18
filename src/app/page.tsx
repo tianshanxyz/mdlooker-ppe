@@ -5,11 +5,11 @@ import { ShieldCheck, FileText, Calculator, Globe, Check } from "lucide-react";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "全球PPE医疗器械合规查询平台",
-  description: "MDLooker提供全球PPE产品注册信息、认证查询、合规标准查询服务，支持CE、FDA、UKCA等多国认证查询，助力企业合规出海。",
+  title: "H-GUARDIAN | 全球PPE医疗器械合规查询平台",
+  description: "H-GUARDIAN提供全球PPE产品注册信息、认证查询、合规标准查询服务，支持CE、FDA、UKCA等多国认证查询，助力企业合规出海。",
   keywords: ["PPE合规查询", "口罩认证查询", "CE认证查询", "FDA注册查询", "医疗器械合规", "PPE出口合规"],
   alternates: {
-    canonical: "https://www.mdlooker.com",
+    canonical: "https://www.h-guardian.com",
   },
 };
 
@@ -24,21 +24,21 @@ export default function Home() {
             {
               "@context": "https://schema.org",
               "@type": "WebSite",
-              "name": "MDLooker",
-              "url": "https://www.mdlooker.com",
+              "name": "H-GUARDIAN",
+              "url": "https://www.h-guardian.com",
               "description": "全球PPE医疗器械合规查询平台，提供多国认证查询、合规标准查询服务。",
               "potentialAction": {
                 "@type": "SearchAction",
-                "target": "https://www.mdlooker.com/search?q={search_term_string}",
+                "target": "https://www.h-guardian.com/search?q={search_term_string}",
                 "query-input": "required name=search_term_string"
               }
             },
             {
               "@context": "https://schema.org",
               "@type": "Organization",
-              "name": "MDLooker",
-              "url": "https://www.mdlooker.com",
-              "logo": "https://www.mdlooker.com/logo.png",
+              "name": "H-GUARDIAN",
+              "url": "https://www.h-guardian.com",
+              "logo": "https://www.h-guardian.com/logo.png",
               "contactPoint": {
                 "@type": "ContactPoint",
                 "email": "support@mdlooker.com",
@@ -58,14 +58,19 @@ export default function Home() {
       <nav className="border-b bg-white sticky top-0 z-50">
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <ShieldCheck className="h-8 w-8 text-[#339999]" />
-            <span className="font-bold text-xl text-gray-900">MDLOOKER</span>
+            <img src="/logo.png" alt="H-Guardian Logo" className="h-8 w-8" />
+            <span className="font-bold text-xl text-gray-900">H-GUARDIAN</span>
           </div>
           <div className="hidden md:flex items-center gap-8">
-            <Link href="/compliance-check" className="text-gray-600 hover:text-[#339999] font-medium">Compliance Check</Link>
-            <Link href="/knowledge-base" className="text-gray-600 hover:text-[#339999] font-medium">Knowledge Base</Link>
-            <Link href="/pricing" className="text-gray-600 hover:text-[#339999] font-medium">Pricing</Link>
-            <Link href="/templates" className="text-gray-600 hover:text-[#339999] font-medium">Templates</Link>
+            <Link href="/search" className="text-gray-600 hover:text-[#339999] font-medium">数据检索</Link>
+            <Link href="/dashboard" className="text-gray-600 hover:text-[#339999] font-medium">行业看板</Link>
+            <Link href="/warning" className="text-gray-600 hover:text-[#339999] font-medium">预警中心</Link>
+            <Link href="/compliance-package" className="text-gray-600 hover:text-[#339999] font-medium">合规包生成</Link>
+            <Link href="/company-score" className="text-gray-600 hover:text-[#339999] font-medium">企业评分</Link>
+            <Link href="/compliance-check" className="text-gray-600 hover:text-[#339999] font-medium">合规检查</Link>
+            <Link href="/knowledge-base" className="text-gray-600 hover:text-[#339999] font-medium">知识库</Link>
+            <Link href="/pricing" className="text-gray-600 hover:text-[#339999] font-medium">定价</Link>
+            <Link href="/templates" className="text-gray-600 hover:text-[#339999] font-medium">模板</Link>
           </div>
           <div className="flex gap-3">
             <Button variant="secondary">Sign In</Button>
@@ -225,8 +230,8 @@ export default function Home() {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <ShieldCheck className="h-6 w-6 text-[#339999]" />
-                <span className="font-bold text-xl">MDLOOKER</span>
+                <img src="/logo.png" alt="H-Guardian Logo" className="h-6 w-6" />
+                <span className="font-bold text-xl">H-GUARDIAN</span>
               </div>
               <p className="text-gray-400 mb-4">
                 Your trusted partner for PPE compliance solutions, helping businesses navigate global regulatory requirements efficiently.
@@ -235,10 +240,12 @@ export default function Home() {
             <div>
               <h3 className="font-semibold text-lg mb-4">Product</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><Link href="/compliance-check" className="hover:text-[#339999]">Compliance Checker</Link></li>
-                <li><Link href="/templates" className="hover:text-[#339999]">Document Templates</Link></li>
-                <li><Link href="/calculator" className="hover:text-[#339999]">Cost Calculator</Link></li>
-                <li><Link href="/knowledge-base" className="hover:text-[#339999]">Knowledge Base</Link></li>
+                <li><Link href="/search" className="hover:text-[#339999]">数据检索</Link></li>
+                <li><Link href="/dashboard" className="hover:text-[#339999]">行业看板</Link></li>
+                <li><Link href="/compliance-check" className="hover:text-[#339999]">合规检查</Link></li>
+                <li><Link href="/templates" className="hover:text-[#339999]">文档模板</Link></li>
+                <li><Link href="/calculator" className="hover:text-[#339999]">成本计算器</Link></li>
+                <li><Link href="/knowledge-base" className="hover:text-[#339999]">知识库</Link></li>
               </ul>
             </div>
             <div>
@@ -260,7 +267,7 @@ export default function Home() {
             </div>
           </div>
           <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
-            <p>&copy; 2026 MDLOOKER. All rights reserved.</p>
+            <p>&copy; 2026 H-GUARDIAN. All rights reserved.</p>
           </div>
         </div>
       </footer>
