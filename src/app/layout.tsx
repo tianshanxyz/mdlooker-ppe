@@ -14,14 +14,14 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "MDLooker | 全球PPE医疗器械合规查询平台",
-    template: "%s | MDLooker"
+    default: "MDLOOKER | Global PPE Medical Device Compliance Platform",
+    template: "%s | MDLOOKER"
   },
-  description: "MDLooker提供全球范围内口罩、个人防护设备（PPE）的注册信息、认证查询、合规标准查询服务，帮助企业快速掌握各国PPE准入要求，降低合规风险。",
-  keywords: ["PPE合规", "口罩注册", "医疗器械认证", "合规查询", "CE认证", "FDA注册", "PPE准入标准", "医疗器械合规", "防护设备认证", "全球合规数据库"],
-  authors: [{ name: "MDLooker Team" }],
-  creator: "MDLooker",
-  publisher: "MDLooker",
+  description: "MDLOOKER provides global registration information, certification inquiry, compliance standard inquiry services for masks and personal protective equipment (PPE), helping enterprises quickly grasp the PPE access requirements of various countries and reduce compliance risks.",
+  keywords: ["PPE compliance", "mask registration", "medical device certification", "compliance query", "CE certification", "FDA registration", "PPE access standards", "medical device compliance", "protective equipment certification", "global compliance database"],
+  authors: [{ name: "MDLOOKER Team" }],
+  creator: "MDLOOKER",
+  publisher: "MDLOOKER",
   formatDetection: {
     email: false,
     address: false,
@@ -31,22 +31,22 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://www.mdlooker.com",
-    siteName: "MDLooker",
-    title: "MDLooker | 全球PPE医疗器械合规查询平台",
-    description: "提供全球PPE医疗器械注册信息、认证查询、合规标准查询服务，助力企业合规出海。",
+    siteName: "MDLOOKER",
+    title: "MDLOOKER | Global PPE Medical Device Compliance Platform",
+    description: "Provides global PPE medical device registration information, certification inquiry, compliance standard inquiry services, helping enterprises comply with regulations when going global.",
     images: [
       {
         url: "https://www.mdlooker.com/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "MDLooker Logo",
+        alt: "MDLOOKER Logo",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "MDLooker | 全球PPE医疗器械合规查询平台",
-    description: "提供全球PPE医疗器械注册信息、认证查询、合规标准查询服务，助力企业合规出海。",
+    title: "MDLOOKER | Global PPE Medical Device Compliance Platform",
+    description: "Provides global PPE medical device registration information, certification inquiry, compliance standard inquiry services, helping enterprises comply with regulations when going global.",
     images: ["https://www.mdlooker.com/og-image.jpg"],
     creator: "@mdlooker",
   },
