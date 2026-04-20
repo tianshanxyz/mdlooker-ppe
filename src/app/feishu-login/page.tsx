@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { QrCode, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 
 const FEISHU_APP_ID = "cli_a969b7b56b78dbc3";
-const REDIRECT_URI = encodeURIComponent(window.location.origin + "/api/feishu/callback");
 
 export default function FeishuLoginPage() {
   const [loginUrl, setLoginUrl] = useState("");
@@ -14,6 +13,7 @@ export default function FeishuLoginPage() {
 
   useEffect(() => {
     // 生成飞书官方扫码登录链接
+    const REDIRECT_URI = encodeURIComponent(window.location.origin + "/api/feishu/callback");
     const state = Math.random().toString(36).substring(2, 15);
     const url = `https://open.feishu.cn/open-apis/authen/v1/index?app_id=${FEISHU_APP_ID}&redirect_uri=${REDIRECT_URI}&state=${state}`;
     setLoginUrl(url);
