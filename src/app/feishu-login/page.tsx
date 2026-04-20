@@ -1,4 +1,7 @@
 "use client";
+// 强制动态渲染，禁止静态预渲染，避免服务端window未定义错误
+export const dynamic = "force-dynamic";
+
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
