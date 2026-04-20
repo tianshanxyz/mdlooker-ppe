@@ -2,12 +2,6 @@
   "buildCommand": "npm run build",
   "outputDirectory": ".next",
   "framework": "nextjs",
-  "installCommand": "npm install",
-  "env": {
-    "NEXT_PUBLIC_SUPABASE_URL": "@supabase-url",
-    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "@supabase-anon-key",
-    "SUPABASE_SERVICE_ROLE_KEY": "@supabase-service-role-key",
-    "FEISHU_APP_ID": "@feishu-app-id",
-    "FEISHU_APP_SECRET": "@feishu-app-secret"
-  }
+  "installCommand": "npm install"
 }
+
