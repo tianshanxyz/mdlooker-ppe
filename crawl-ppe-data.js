@@ -38,7 +38,7 @@ async function generateSampleData() {
   }
   
   // 批量插入法规，重复则跳过
-  const { error: regError, data: insertedRegs } = await supabase.from('regulations').insert(regulations).onConflict('regulation_code').ignore().select('id, regulation_code');
+  const { error: regError, data: insertedRegs } = await supabase.from('regulations').upsert(regulations, { onConflict: 'regulation_code' }).select('id, regulation_code');
   if (regError) throw regError;
   console.log(`✅ 成功插入${insertedRegs.length}条法规数据`);
   
@@ -75,7 +75,7 @@ async function generateSampleData() {
   let totalProductsInserted = 0;
   for (let i = 0; i < products.length; i += batchSize) {
     const batch = products.slice(i, i + batchSize);
-    const { error: prodError, data: insertedProds } = await supabase.from('products').insert(batch).onConflict('registration_number').ignore().select('id');
+    const { error: prodError, data: insertedProds } = await supabase.from('products').upsert(batch, { onConflict: 'registration_number' }).select('id');
     if (prodError) {
       console.error('产品插入失败:', prodError);
       continue;
@@ -118,7 +118,7 @@ async function generateSampleData() {
   let totalCertsInserted = 0;
   for (let i = 0; i < certifications.length; i += batchSize) {
     const batch = certifications.slice(i, i + batchSize);
-    const { error: certError, data: insertedCerts } = await supabase.from('certifications').insert(batch).onConflict('certification_number').ignore().select('id');
+    const { error: certError, data: insertedCerts } = await supabase.from('certifications').upsert(batch, { onConflict: 'certification_number' }).select('id');
     if (certError) {
       console.error('认证插入失败:', certError);
       continue;
