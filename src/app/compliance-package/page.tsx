@@ -9,34 +9,35 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Progress } from "@/components/ui/progress";
 import { FileText, Download, ShieldCheck, Globe, CheckCircle2, Loader2, AlertCircle } from "lucide-react";
 import { createClient } from "@supabase/supabase-js";
+import Navbar from "@/components/Navbar";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 const countryOptions = [
-  { value: "欧盟", label: "欧盟 EU", standards: ["CE认证", "EU PPE法规", "REACH法规"] },
-  { value: "美国", label: "美国 USA", standards: ["FDA认证", "NIOSH认证", "ASTM标准"] },
-  { value: "英国", label: "英国 UK", standards: ["UKCA认证", "英国PPE法规"] },
-  { value: "中国", label: "中国 CN", standards: ["GB标准", "医疗器械注册证"] },
-  { value: "日本", label: "日本 JP", standards: ["PSE认证", "厚生劳动省认证"] },
-  { value: "韩国", label: "韩国 KR", standards: ["KC认证", "KFDA认证"] },
-  { value: "澳大利亚", label: "澳大利亚 AU", standards: ["TGA认证", "AS/NZS标准"] },
-  { value: "加拿大", label: "加拿大 CA", standards: ["CSA认证", "Health Canada认证"] },
-  { value: "中东GCC", label: "中东 GCC", standards: ["GCC认证", "SASO标准"] },
-  { value: "东盟", label: "东盟 ASEAN", standards: ["ASEAN认证", "各国本地准入要求"] },
+  { value: "eu", label: "European Union (EU)", standards: ["CE Certification", "EU PPE Regulation", "REACH Regulation"] },
+  { value: "us", label: "United States (USA)", standards: ["FDA Certification", "NIOSH Certification", "ASTM Standards"] },
+  { value: "uk", label: "United Kingdom (UK)", standards: ["UKCA Certification", "UK PPE Regulation"] },
+  { value: "cn", label: "China (CN)", standards: ["GB Standards", "Medical Device Registration Certificate"] },
+  { value: "jp", label: "Japan (JP)", standards: ["PSE Certification", "MHLW Certification"] },
+  { value: "kr", label: "South Korea (KR)", standards: ["KC Certification", "KFDA Certification"] },
+  { value: "au", label: "Australia (AU)", standards: ["TGA Certification", "AS/NZS Standards"] },
+  { value: "ca", label: "Canada (CA)", standards: ["CSA Certification", "Health Canada Certification"] },
+  { value: "gcc", label: "Middle East (GCC)", standards: ["GCC Certification", "SASO Standards"] },
+  { value: "asean", label: "ASEAN", standards: ["ASEAN Certification", "Local Access Requirements of Each Country"] },
 ];
 
 const productTypes = [
-  "医用口罩", "防护口罩", "KN95口罩", "N95口罩", "FFP2口罩", "FFP3口罩", 
-  "医用防护服", "隔离衣", "一次性手套", "丁腈手套", "乳胶手套", "护目镜", 
-  "防护面罩", "防毒面具", "医用手套", "手术衣"
+  "Medical Mask", "Protective Mask", "KN95 Mask", "N95 Mask", "FFP2 Mask", "FFP3 Mask", 
+  "Medical Protective Suit", "Isolation Gown", "Disposable Gloves", "Nitrile Gloves", "Latex Gloves", "Goggles", 
+  "Face Shield", "Gas Mask", "Medical Gloves", "Surgical Gown"
 ];
 
 const packageTypes = [
-  { id: "basic", name: "基础合规包", desc: "包含基础认证要求、标准文档模板", items: ["认证要求清单", "标准法规原文", "申请流程指南"] },
-  { id: "standard", name: "标准合规包", desc: "包含基础包全部内容+申请材料模板+测试标准", items: ["基础包全部内容", "申请材料模板", "测试标准文档", "样本报告参考"] },
-  { id: "premium", name: "高级合规包", desc: "包含标准包全部内容+定制化方案+专家咨询服务", items: ["标准包全部内容", "定制化合规方案", "专家1对1咨询", "风险评估报告"] },
+  { id: "basic", name: "Basic Compliance Package", desc: "Includes basic certification requirements, standard document templates", items: ["Certification Requirements List", "Original Standard Regulations", "Application Process Guide"] },
+  { id: "standard", name: "Standard Compliance Package", desc: "Includes all content of basic package + application material templates + testing standards", items: ["All Content of Basic Package", "Application Material Templates", "Testing Standard Documents", "Sample Report Reference"] },
+  { id: "premium", name: "Premium Compliance Package", desc: "Includes all content of standard package + customized solution + expert consulting service", items: ["All Content of Standard Package", "Customized Compliance Solution", "1-on-1 Expert Consultation", "Risk Assessment Report"] },
 ];
 
 export default function CompliancePackagePage() {
@@ -65,7 +66,7 @@ export default function CompliancePackagePage() {
 
   const generatePackage = async () => {
     if (!formData.productName || !formData.productType || !formData.targetCountry) {
-      setError("请完善所有必填信息");
+      setError("Please fill in all required information");
       return;
     }
 
@@ -142,23 +143,8 @@ export default function CompliancePackagePage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* 导航栏 */}
-      <nav className="border-b bg-white sticky top-0 z-50 shadow-sm">
-        <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <img src="/logo.png" alt="H-Guardian Logo" className="h-8 w-8" />
-            <span className="font-bold text-xl text-gray-900">H-GUARDIAN</span>
-          </div>
-          <div className="hidden md:flex items-center gap-8">
-            <a href="/" className="text-gray-600 hover:text-[#339999] font-medium">首页</a>
-            <a href="/search" className="text-gray-600 hover:text-[#339999] font-medium">数据检索</a>
-            <a href="/dashboard" className="text-gray-600 hover:text-[#339999] font-medium">行业看板</a>
-            <a href="/warning" className="text-gray-600 hover:text-[#339999] font-medium">预警中心</a>
-            <a href="/compliance-package" className="text-[#339999] font-medium font-bold">合规包生成</a>
-            <a href="/compliance-check" className="text-gray-600 hover:text-[#339999] font-medium">合规检查</a>
-          </div>
-        </div>
-      </nav>
+      {/* Navigation */}
+      <Navbar />
 
       {/* 页面头部 */}
       <section className="bg-white border-b py-8">
