@@ -5,9 +5,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ShieldCheck, Send, CheckCircle, AlertTriangle } from "lucide-react";
+import { ShieldCheck, Send, CheckCircle, AlertTriangle, FileDown } from "lucide-react";
 import emailjs from '@emailjs/browser';
 import Link from "next/link";
+import Navbar from "@/components/Navbar";
 
 const complianceRules = {
   masks: {
@@ -155,8 +156,9 @@ export default function ComplianceCheckContent() {
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-gray-50 py-12">
-        <div className="container mx-auto px-4">
+      <div className="min-h-screen bg-gray-50">
+        <Navbar />
+        <div className="container mx-auto px-4 py-12">
           <div className="max-w-3xl mx-auto">
             <Card className="text-center">
               <CardHeader>
@@ -219,8 +221,9 @@ export default function ComplianceCheckContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      {/* 全局提示 */}
+    <div className="min-h-screen bg-gray-50">
+      <Navbar />
+      {/* Global Notification */}
       {notification && (
         <div className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 px-6 py-3 rounded-lg shadow-lg max-w-md w-full flex items-center gap-3 ${
           notification.type === 'success' ? 'bg-green-50 border border-green-200 text-green-800' : 'bg-red-50 border border-red-200 text-red-800'
