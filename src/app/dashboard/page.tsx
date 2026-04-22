@@ -5,6 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from "recharts";
 import { Globe, TrendingUp, AlertTriangle, Building2, ShieldCheck, Clock } from "lucide-react";
 import { createClient } from "@supabase/supabase-js";
+import Navbar from "@/components/Navbar";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
@@ -138,21 +139,8 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* 导航栏 */}
-      <nav className="border-b bg-white sticky top-0 z-50 shadow-sm">
-        <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <img src="/logo.png" alt="H-Guardian Logo" className="h-8 w-8" />
-            <span className="font-bold text-xl text-gray-900">H-GUARDIAN</span>
-          </div>
-          <div className="hidden md:flex items-center gap-8">
-            <a href="/" className="text-gray-600 hover:text-[#339999] font-medium">首页</a>
-            <a href="/search" className="text-gray-600 hover:text-[#339999] font-medium">数据检索</a>
-            <a href="/compliance-check" className="text-gray-600 hover:text-[#339999] font-medium">合规检查</a>
-            <a href="/knowledge-base" className="text-gray-600 hover:text-[#339999] font-medium">知识库</a>
-          </div>
-        </div>
-      </nav>
+      {/* Navigation */}
+      <Navbar />
 
       {/* 页面头部 */}
       <section className="bg-white border-b py-8">
