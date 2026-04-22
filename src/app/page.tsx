@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { ShieldCheck, FileText, Calculator, Globe, Check } from "lucide-react";
 import Link from "next/link";
+import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
   title: "MDLOOKER | Global PPE Medical Device Compliance Platform",
@@ -55,29 +56,7 @@ export default function Home() {
       />
       <div className="min-h-screen flex flex-col">
       {/* Navigation */}
-      <nav className="border-b bg-white sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <img src="/logo.png" alt="MDLOOKER Logo" className="h-8 w-8" />
-            <span className="font-bold text-xl text-gray-900">MDLOOKER</span>
-          </div>
-          <div className="hidden md:flex items-center gap-8">
-            <Link href="/search" className="text-gray-600 hover:text-[#339999] font-medium">Data Search</Link>
-            <Link href="/dashboard" className="text-gray-600 hover:text-[#339999] font-medium">Industry Dashboard</Link>
-            <Link href="/warning" className="text-gray-600 hover:text-[#339999] font-medium">Alert Center</Link>
-            <Link href="/compliance-package" className="text-gray-600 hover:text-[#339999] font-medium">Compliance Package</Link>
-            <Link href="/company-score" className="text-gray-600 hover:text-[#339999] font-medium">Company Rating</Link>
-            <Link href="/compliance-check" className="text-gray-600 hover:text-[#339999] font-medium">Compliance Check</Link>
-            <Link href="/knowledge-base" className="text-gray-600 hover:text-[#339999] font-medium">Knowledge Base</Link>
-            <Link href="/pricing" className="text-gray-600 hover:text-[#339999] font-medium">Pricing</Link>
-            <Link href="/templates" className="text-gray-600 hover:text-[#339999] font-medium">Templates</Link>
-          </div>
-          <div className="flex gap-3">
-            <Button variant="secondary">Sign In</Button>
-            <Button className="bg-[#339999] hover:bg-[#2d8a8a] text-white">Get Started</Button>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Hero Section */}
       <section className="flex-1 bg-gradient-to-br from-[#339999]/5 to-white py-20">
@@ -241,11 +220,14 @@ export default function Home() {
               <h3 className="font-semibold text-lg mb-4">Product</h3>
               <ul className="space-y-2 text-gray-400">
                 <li><Link href="/search" className="hover:text-[#339999]">Data Search</Link></li>
-                <li><Link href="/dashboard" className="hover:text-[#339999]">Industry Dashboard</Link></li>
                 <li><Link href="/compliance-check" className="hover:text-[#339999]">Compliance Check</Link></li>
-                <li><Link href="/templates" className="hover:text-[#339999]">Document Templates</Link></li>
-                <li><Link href="/calculator" className="hover:text-[#339999]">Cost Calculator</Link></li>
+                <li><Link href="/compliance-package" className="hover:text-[#339999]">Compliance Package</Link></li>
+                <li><Link href="/company-score" className="hover:text-[#339999]">Company Rating</Link></li>
                 <li><Link href="/knowledge-base" className="hover:text-[#339999]">Knowledge Base</Link></li>
+                <li><Link href="/templates" className="hover:text-[#339999]">Templates</Link></li>
+                <li><Link href="/calculator" className="hover:text-[#339999]">Cost Calculator</Link></li>
+                <li><Link href="/dashboard" className="hover:text-[#339999]">Industry Dashboard</Link></li>
+                <li><Link href="/warning" className="hover:text-[#339999]">Alert Center</Link></li>
               </ul>
             </div>
             <div>
