@@ -12,13 +12,10 @@ export default function Navbar() {
           <span className="font-bold text-xl text-gray-900">MDLOOKER</span>
         </div>
         <div className="hidden md:flex items-center gap-8">
-          <Link href="/search" className="text-gray-600 hover:text-[#339999] font-medium">Data Search</Link>
-          <Link href="/compliance-check" className="text-gray-600 hover:text-[#339999] font-medium">Compliance Check</Link>
-          <Link href="/compliance-package" className="text-gray-600 hover:text-[#339999] font-medium">Compliance Package</Link>
-          <Link href="/company-score" className="text-gray-600 hover:text-[#339999] font-medium">Company Rating</Link>
+          <Link href="/" className="text-gray-600 hover:text-[#339999] font-medium">Home</Link>
+          <Link href="/compliance-tools" className="text-gray-600 hover:text-[#339999] font-medium">Compliance Tools</Link>
           <Link href="/knowledge-base" className="text-gray-600 hover:text-[#339999] font-medium">Knowledge Base</Link>
-          <Link href="/pricing" className="text-gray-600 hover:text-[#339999] font-medium">Pricing</Link>
-          <Link href="/templates" className="text-gray-600 hover:text-[#339999] font-medium">Templates</Link>
+          <Link href="/console" className="text-gray-600 hover:text-[#339999] font-medium">Console</Link>
         </div>
         <div className="flex gap-3">
           <Button variant="secondary">Sign In</Button>
