@@ -8,6 +8,7 @@ import { Progress } from "@/components/ui/progress";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from "recharts";
 import { Search, Building2, Award, TrendingUp, Globe, ShieldCheck, Calendar, CheckCircle2, FileText, AlertCircle, Loader2 } from "lucide-react";
 import { createClient } from "@supabase/supabase-js";
+import Navbar from "@/components/Navbar";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
@@ -140,24 +141,8 @@ export default function CompanyScorePage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* 导航栏 */}
-      <nav className="border-b bg-white sticky top-0 z-50 shadow-sm">
-        <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <img src="/logo.png" alt="H-Guardian Logo" className="h-8 w-8" />
-            <span className="font-bold text-xl text-gray-900">H-GUARDIAN</span>
-          </div>
-          <div className="hidden md:flex items-center gap-8">
-            <a href="/" className="text-gray-600 hover:text-[#339999] font-medium">首页</a>
-            <a href="/search" className="text-gray-600 hover:text-[#339999] font-medium">数据检索</a>
-            <a href="/dashboard" className="text-gray-600 hover:text-[#339999] font-medium">行业看板</a>
-            <a href="/warning" className="text-gray-600 hover:text-[#339999] font-medium">预警中心</a>
-            <a href="/compliance-package" className="text-gray-600 hover:text-[#339999] font-medium">合规包生成</a>
-            <a href="/company-score" className="text-[#339999] font-medium font-bold">企业评分</a>
-            <a href="/compliance-check" className="text-gray-600 hover:text-[#339999] font-medium">合规检查</a>
-          </div>
-        </div>
-      </nav>
+      {/* Navigation */}
+      <Navbar />
 
       {/* 页面头部 */}
       <section className="bg-white border-b py-8">
