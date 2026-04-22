@@ -84,7 +84,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Global PPE medical device compliance platform
+              Global PPE Medical Device Compliance Platform
             </h1>
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
               Get instant compliance reports, regulatory updates, and document templates for PPE products entering EU, US, UK, and Middle East markets. Save months of certification time and avoid costly compliance mistakes.
