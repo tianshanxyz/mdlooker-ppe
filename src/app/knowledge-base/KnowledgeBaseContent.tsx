@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { ShieldCheck, FileText, Search, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
+import Navbar from "@/components/Navbar";
 
 // 模拟数据，后面换成Supabase里的真实数据
 const regulations = [
@@ -116,13 +117,15 @@ export default function KnowledgeBaseContent() {
   });
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="container mx-auto px-4">
+    <div className="min-h-screen bg-gray-50">
+      {/* Navigation */}
+      <Navbar />
+      <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto mb-12 text-center">
-          <img src="/logo.png" alt="H-Guardian Logo" className="h-12 w-12 mx-auto mb-4" />
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">PPE法规知识库</h1>
+          <img src="/logo.png" alt="MDLOOKER Logo" className="h-12 w-12 mx-auto mb-4" />
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">PPE Regulation Knowledge Base</h1>
           <p className="text-xl text-gray-600">
-            全球主要市场PPE法规和标准数据库，所有内容均标注官方来源，每月更新。
+            Global PPE regulation and standard database, all content with official source references, updated monthly.
           </p>
         </div>
 
@@ -132,7 +135,7 @@ export default function KnowledgeBaseContent() {
             <div className="relative">
               <Search className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
               <Input 
-                placeholder="搜索法规、标准名称或内容..." 
+                placeholder="Search regulation name, standard title or content..." 
                 className="pl-10 h-12 text-base"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -140,34 +143,34 @@ export default function KnowledgeBaseContent() {
             </div>
             <div className="grid md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">产品类别</label>
+                <label className="text-sm font-medium text-gray-700">Product Category</label>
                 <Select value={selectedCategory} onValueChange={setSelectedCategory}>
                   <SelectTrigger>
-                    <SelectValue placeholder="选择产品类别" />
+                    <SelectValue placeholder="Select product category" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">全部类别</SelectItem>
-                    <SelectItem value="口罩">口罩</SelectItem>
-                    <SelectItem value="防护服">防护服</SelectItem>
-                    <SelectItem value="手套">防护手套</SelectItem>
-                    <SelectItem value="眼面">眼面防护</SelectItem>
-                    <SelectItem value="头部">头部防护</SelectItem>
+                    <SelectItem value="all">All Categories</SelectItem>
+                    <SelectItem value="口罩">Face Mask</SelectItem>
+                    <SelectItem value="防护服">Protective Clothing</SelectItem>
+                    <SelectItem value="手套">Protective Gloves</SelectItem>
+                    <SelectItem value="眼面">Eye & Face Protection</SelectItem>
+                    <SelectItem value="头部">Head Protection</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">目标市场</label>
+                <label className="text-sm font-medium text-gray-700">Target Market</label>
                 <Select value={selectedMarket} onValueChange={setSelectedMarket}>
                   <SelectTrigger>
-                    <SelectValue placeholder="选择目标市场" />
+                    <SelectValue placeholder="Select target market" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">全部市场</SelectItem>
-                    <SelectItem value="欧盟">欧盟（EU）</SelectItem>
-                    <SelectItem value="美国">美国（USA）</SelectItem>
-                    <SelectItem value="英国">英国（UK）</SelectItem>
-                    <SelectItem value="中东">中东（GCC）</SelectItem>
-                    <SelectItem value="中国">中国</SelectItem>
+                    <SelectItem value="all">All Markets</SelectItem>
+                    <SelectItem value="欧盟">EU</SelectItem>
+                    <SelectItem value="美国">USA</SelectItem>
+                    <SelectItem value="英国">UK</SelectItem>
+                    <SelectItem value="中东">GCC</SelectItem>
+                    <SelectItem value="中国">China</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -180,7 +183,7 @@ export default function KnowledgeBaseContent() {
           {filteredRegulations.length === 0 ? (
             <div className="col-span-2 text-center py-12 text-gray-500">
               <FileText className="h-12 w-12 mx-auto mb-4 text-gray-400" />
-              <p>没有找到匹配的法规，请调整搜索条件。</p>
+              <p>No matching regulations found, please adjust your search criteria.</p>
             </div>
           ) : (
             filteredRegulations.map(reg => (
@@ -191,12 +194,12 @@ export default function KnowledgeBaseContent() {
                       <CardTitle className="text-lg font-semibold text-gray-900">{reg.title}</CardTitle>
                       <CardDescription className="mt-1">
                         <span className="inline-block px-2 py-1 bg-[#339999]/10 text-[#339999] rounded text-xs font-medium mr-2">
-                          {reg.category}
+                          {reg.category === '口罩' ? 'Face Mask' : reg.category === '防护服' ? 'Protective Clothing' : reg.category === '手套' ? 'Gloves' : reg.category}
                         </span>
                         <span className="inline-block px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs font-medium mr-2">
-                          {reg.market}
+                          {reg.market === '欧盟' ? 'EU' : reg.market === '美国' ? 'USA' : reg.market === '英国' ? 'UK' : reg.market === '中东' ? 'GCC' : reg.market}
                         </span>
-                        <span className="text-xs text-gray-500">更新于 {reg.lastUpdated}</span>
+                        <span className="text-xs text-gray-500">Updated at {reg.lastUpdated}</span>
                       </CardDescription>
                     </div>
                   </div>
@@ -208,7 +211,7 @@ export default function KnowledgeBaseContent() {
                     target="_blank" 
                     className="inline-flex items-center text-[#339999] hover:underline text-sm font-medium"
                   >
-                    查看官方原文 <ExternalLink className="ml-1 h-4 w-4" />
+                    View Official Source <ExternalLink className="ml-1 h-4 w-4" />
                   </Link>
                 </CardContent>
               </Card>
@@ -218,7 +221,7 @@ export default function KnowledgeBaseContent() {
 
         {/* 底部提示 */}
         <div className="max-w-4xl mx-auto mt-12 text-center text-gray-500 text-sm">
-          <p>数据库持续更新中，需要特定法规或标准请联系 <a href="mailto:support@mdlooker.com" className="text-[#339999] hover:underline">support@mdlooker.com</a></p>
+          <p>Database is continuously updated. For specific regulations or standards, please contact <a href="mailto:support@mdlooker.com" className="text-[#339999] hover:underline">support@mdlooker.com</a></p>
         </div>
       </div>
     </div>

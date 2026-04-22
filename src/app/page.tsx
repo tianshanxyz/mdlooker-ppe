@@ -68,15 +68,35 @@ export default function Home() {
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
               Get instant compliance reports, regulatory updates, and document templates for PPE products entering EU, US, UK, and Middle East markets. Save months of certification time and avoid costly compliance mistakes.
             </p>
+            
+            {/* 搜索框 */}
+            <div className="relative w-full max-w-2xl mx-auto mb-8">
+              <input
+                type="text"
+                placeholder="Search product, certification, company, regulation..."
+                className="w-full pl-12 pr-4 py-4 text-lg rounded-lg border border-gray-300 shadow-sm focus:ring-2 focus:ring-[#339999] focus:border-transparent"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && (e.target as HTMLInputElement).value) {
+                    window.location.href = `/search?q=${encodeURIComponent((e.target as HTMLInputElement).value)}`
+                  }
+                }}
+              />
+              <svg xmlns="http://www.w3.org/2000/svg" className="absolute left-4 top-1/2 -translate-y-1/2 h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/compliance-check">
                 <Button className="bg-[#339999] hover:bg-[#2d8a8a] text-white text-lg px-8 py-6 h-auto">
                   Free Compliance Check
                 </Button>
               </Link>
-              <Button variant="secondary" className="text-lg px-8 py-6 h-auto">
-                View Pricing
-              </Button>
+              <Link href="/pricing">
+                <Button variant="secondary" className="text-lg px-8 py-6 h-auto">
+                  View Pricing
+                </Button>
+              </Link>
             </div>
             <div className="mt-12 flex flex-wrap justify-center gap-6">
               <div className="flex items-center gap-2 text-gray-600">
