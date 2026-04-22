@@ -7,15 +7,16 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from "@/components/ui/badge";
 import { Search, Filter, Calendar, Globe, ShieldCheck, Building2, Star } from "lucide-react";
 import { createClient } from "@supabase/supabase-js";
+import Navbar from "@/components/Navbar";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-const countries = ["全部", "欧盟", "美国", "英国", "中国", "日本", "韩国", "澳大利亚", "加拿大", "中东GCC", "东盟"];
-const certificationTypes = ["全部", "CE", "FDA", "UKCA", "GB", "PSE", "KC", "G-mark", "TGA", "ANVISA", "FDA 510(k)"];
-const productTypes = ["全部", "医用口罩", "防护口罩", "KN95口罩", "N95口罩", "FFP2口罩", "FFP3口罩", "医用防护服", "隔离衣", "一次性手套", "丁腈手套", "乳胶手套", "护目镜", "防护面罩", "防毒面具"];
-const statusOptions = ["全部", "valid", "expired", "suspended"];
+const countries = ["All", "EU", "US", "UK", "CN", "JP", "KR", "AU", "CA", "GCC", "ASEAN"];
+const certificationTypes = ["All", "CE", "FDA", "UKCA", "GB", "PSE", "KC", "G-mark", "TGA", "ANVISA", "FDA 510(k)"];
+const productTypes = ["All", "Medical Mask", "Protective Mask", "KN95 Mask", "N95 Mask", "FFP2 Mask", "FFP3 Mask", "Medical Protective Suit", "Isolation Gown", "Disposable Gloves", "Nitrile Gloves", "Latex Gloves", "Goggles", "Face Shield", "Gas Mask"];
+const statusOptions = ["All", "valid", "expired", "suspended"];
 
 export default function SearchPage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -84,9 +85,9 @@ export default function SearchPage() {
 
   const getStatusText = (status: string) => {
     switch (status) {
-      case "valid": return "有效";
-      case "expired": return "已过期";
-      case "suspended": return "已暂停";
+      case "valid": return "Valid";
+      case "expired": return "Expired";
+      case "suspended": return "Suspended";
       default: return status;
     }
   };
@@ -97,21 +98,8 @@ export default function SearchPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* 导航栏 */}
-      <nav className="border-b bg-white sticky top-0 z-50 shadow-sm">
-        <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <img src="/logo.png" alt="H-Guardian Logo" className="h-8 w-8" />
-            <span className="font-bold text-xl text-gray-900">H-GUARDIAN</span>
-          </div>
-          <div className="hidden md:flex items-center gap-8">
-            <a href="/" className="text-gray-600 hover:text-[#339999] font-medium">首页</a>
-            <a href="/compliance-check" className="text-gray-600 hover:text-[#339999] font-medium">合规检查</a>
-            <a href="/knowledge-base" className="text-gray-600 hover:text-[#339999] font-medium">知识库</a>
-            <a href="/dashboard" className="text-gray-600 hover:text-[#339999] font-medium">行业看板</a>
-          </div>
-        </div>
-      </nav>
+      {/* Navigation */}
+      <Navbar />
 
       {/* 搜索头部 */}
       <section className="bg-white border-b py-8">
@@ -209,17 +197,17 @@ export default function SearchPage() {
         </div>
       </section>
 
-      {/* 搜索结果 */}
+      {/* Search Results */}
       <section className="py-8">
         <div className="container mx-auto px-4">
           {loading ? (
             <div className="text-center py-12">
-              <p className="text-gray-500 text-lg">搜索中，请稍候...</p>
+              <p className="text-gray-500 text-lg">Searching, please wait...</p>
             </div>
           ) : results.length === 0 ? (
             <div className="text-center py-12 bg-white rounded-lg shadow-sm">
-              <p className="text-gray-500 text-lg">没有找到匹配的结果</p>
-              <p className="text-gray-400 mt-2">请尝试调整搜索关键词或筛选条件</p>
+              <p className="text-gray-500 text-lg">No matching results found</p>
+              <p className="text-gray-400 mt-2">Please try adjusting your search keywords or filters</p>
             </div>
           ) : (
             <div className="grid gap-4">
@@ -230,7 +218,7 @@ export default function SearchPage() {
                       <div>
                         <CardTitle className="text-xl font-bold text-gray-900">{product.name}</CardTitle>
                         <CardDescription className="mt-1">
-                          <span className="font-medium">{product.brand}</span> | 型号：{product.model} | 注册号：{product.registration_number}
+                          <span className="font-medium">{product.brand}</span> | Model: {product.model} | Registration No.: {product.registration_number}
                         </CardDescription>
                       </div>
                       {product.certifications?.[0] && (
@@ -245,15 +233,15 @@ export default function SearchPage() {
                       <div className="space-y-2">
                         <div className="flex items-center gap-2 text-gray-600">
                           <Building2 className="h-4 w-4 text-[#339999]" />
-                          <span>生产商：{product.manufacturer}</span>
+                          <span>Manufacturer: {product.manufacturer}</span>
                         </div>
                         <div className="flex items-center gap-2 text-gray-600">
                           <Globe className="h-4 w-4 text-[#339999]" />
-                          <span>市场：{product.country}</span>
+                          <span>Market: {product.country}</span>
                         </div>
                         <div className="flex items-center gap-2 text-gray-600">
                           <ShieldCheck className="h-4 w-4 text-[#339999]" />
-                          <span>认证类型：{product.certification_type}</span>
+                          <span>Certification Type: {product.certification_type}</span>
                         </div>
                       </div>
                       <div className="space-y-2">
@@ -261,18 +249,18 @@ export default function SearchPage() {
                           <>
                             <div className="flex items-center gap-2 text-gray-600">
                               <Calendar className="h-4 w-4 text-[#339999]" />
-                              <span>有效期至：{product.certifications[0].valid_until}</span>
+                              <span>Valid Until: {product.certifications[0].valid_until}</span>
                             </div>
                             <div className="flex items-center gap-2 text-gray-600">
                               <span className="h-4 w-4 text-[#339999]">🏢</span>
-                              <span>发证机构：{product.certifications[0].issuing_authority}</span>
+                              <span>Issuing Authority: {product.certifications[0].issuing_authority}</span>
                             </div>
                           </>
                         )}
                         {product.regulations?.[0] && (
                           <div className="flex items-center gap-2 text-gray-600">
                             <span className="h-4 w-4 text-[#339999]">📜</span>
-                            <span>符合法规：{product.regulations[0].regulation_name}</span>
+                            <span>Compliant with Regulation: {product.regulations[0].regulation_name}</span>
                           </div>
                         )}
                       </div>
@@ -287,7 +275,7 @@ export default function SearchPage() {
                       <Badge variant="outline">{product.country}</Badge>
                     </div>
                     <Button size="sm" className="bg-[#339999] hover:bg-[#2d8a8a] text-white">
-                      查看详情
+                      View Details
                     </Button>
                   </CardFooter>
                 </Card>
