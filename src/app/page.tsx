@@ -1,18 +1,9 @@
-import type { Metadata } from "next";
+'use client';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { ShieldCheck, FileText, Calculator, Globe, Check } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
-
-export const metadata: Metadata = {
-  title: "MDLOOKER | Global PPE Medical Device Compliance Platform",
-  description: "MDLOOKER provides global PPE product registration information, certification query, compliance standard query services, supporting CE, FDA, UKCA and other multi-national certification queries, helping enterprises comply with regulations when going global.",
-  keywords: ["PPE compliance query", "mask certification query", "CE certification query", "FDA registration query", "medical device compliance", "PPE export compliance"],
-  alternates: {
-    canonical: "https://www.mdlooker.com",
-  },
-};
 
 export default function Home() {
   return (

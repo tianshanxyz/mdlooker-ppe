@@ -7,7 +7,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { ShieldCheck, FileText, Search, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
-import Navbar from "@/components/Navbar";
 
 // 模拟数据，后面换成Supabase里的真实数据
 const regulations = [
