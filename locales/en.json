@@ -1,0 +1,298 @@
+{
+  "common": {
+    "home": "Home",
+    "complianceTools": "Compliance Tools",
+    "complianceTracker": "Compliance Tracker",
+    "knowledgeBase": "Regulation Knowledge Base",
+    "pricing": "Pricing",
+    "aiAssistant": "AI Compliance Assistant",
+    "dashboard": "Dashboard",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "search": "Search",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "download": "Download",
+    "upload": "Upload",
+    "confirm": "Confirm",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "edit": "Edit",
+    "delete": "Delete",
+    "create": "Create",
+    "add": "Add",
+    "loading": "Loading...",
+    "success": "Operation successful",
+    "error": "Operation failed",
+    "required": "Required",
+    "noData": "No data available",
+    "learnMore": "Learn More",
+    "contactUs": "Contact Us",
+    "language": "Language",
+    "chinese": "Chinese",
+    "english": "English",
+    "name": "Name",
+    "description": "Description",
+    "status": "Status",
+    "progress": "Progress",
+    "date": "Date",
+    "priority": "Priority",
+    "assignee": "Assignee",
+    "dueDate": "Due Date",
+    "tasks": "Tasks",
+    "attachments": "Attachments",
+    "details": "Details",
+    "action": "Action",
+    "profile": "Profile",
+    "upgradePlan": "Upgrade Plan",
+    "planFree": "Free Plan",
+    "planPro": "Pro Plan",
+    "planEnterprise": "Enterprise Plan"
+  },
+  "complianceTracker": {
+    "title": "Compliance Status Tracker",
+    "subtitle": "Manage all your compliance certification projects, track progress, and get automatic expiration reminders",
+    "createProject": "New Project",
+    "projectName": "Project Name",
+    "productCategory": "Product Category",
+    "targetMarket": "Target Market",
+    "certificationType": "Certification Type",
+    "expectedCompletionDate": "Expected Completion Date",
+    "expirationDate": "Certificate Expiration Date",
+    "projectDescription": "Project Description",
+    "searchPlaceholder": "Search project name, certification type...",
+    "filterStatus": "Filter by Status",
+    "noProjects": "No compliance projects yet",
+    "noProjectsDesc": "Create your first compliance project to start tracking certification progress and get automatic expiration reminders",
+    "statusPending": "Pending",
+    "statusProcessing": "In Progress",
+    "statusReviewing": "Under Review",
+    "statusCompleted": "Completed",
+    "statusRejected": "Rejected",
+    "statusExpired": "Expired",
+    "priorityLow": "Low",
+    "priorityMedium": "Medium",
+    "priorityHigh": "High",
+    "priorityUrgent": "Urgent",
+    "overdue": "Overdue",
+    "createTask": "New Task",
+    "taskName": "Task Name",
+    "taskDescription": "Task Description",
+    "noTasks": "No tasks yet",
+    "noTasksDesc": "Add your first task to start tracking project progress",
+    "projectOverview": "Project Overview",
+    "timeInfo": "Time Information",
+    "notificationSettings": "Notification Settings",
+    "expirationReminder": "Expiration Reminder",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "reminderDays": "Remind days in advance",
+    "days": "days",
+    "startDate": "Start Date",
+    "taskManagement": "Task Management",
+    "projectDetails": "Project Details",
+    "attachmentManagement": "Attachment Management",
+    "noAttachments": "No attachments yet",
+    "noAttachmentsDesc": "Upload your certification documents, test reports, technical materials and other files",
+    "uploadAttachment": "Upload Attachment",
+    "uploadFile": "Upload File",
+    "editProject": "Edit Project",
+    "deleteProject": "Delete Project",
+    "deleteConfirm": "Confirm Delete Project",
+    "deleteConfirmDesc": "This action will permanently delete the project and all its tasks and attachments, which cannot be recovered.",
+    "createdAt": "Created At",
+    "productInfo": "Product Information",
+    "createSuccess": "Project created successfully",
+    "updateSuccess": "Project updated successfully",
+    "taskCreateSuccess": "Task created successfully",
+    "errorRequiredFields": "Please fill in all required fields",
+    "errorCreateFailed": "Creation failed, please try again later"
+  },
+  "home": {
+    "title": "One-stop Platform for Global PPE Compliance",
+    "subtitle": "Covers PPE compliance requirements for 30+ countries and regions including EU, USA, UK, Middle East, helping enterprises go global quickly and reduce compliance risks",
+    "ctaStart": "Start for Free",
+    "ctaDemo": "View Demo",
+    "featuresTitle": "Core Features",
+    "features": [
+      {
+        "title": "Compliance Check Wizard",
+        "desc": "Enter product information and target market, generate a complete compliance solution in 30 seconds, including certification requirements, costs, and cycle"
+      },
+      {
+        "title": "One-click Compliance Package Generation",
+        "desc": "Automatically generate a full set of compliance document packages, including certification requirements, test standards, and application material templates"
+      },
+      {
+        "title": "Professional Document Template Library",
+        "desc": "100+ professionally reviewed compliance document templates, editable directly, saving 90% of time"
+      },
+      {
+        "title": "Global Regulation Knowledge Base",
+        "desc": "Real-time update of the latest global PPE regulations and standards, all content comes from official authoritative sources"
+      }
+    ],
+    "statsTitle": "Platform Statistics",
+    "stats": [
+      {
+        "number": "30+",
+        "label": "Countries and regions covered"
+      },
+      {
+        "number": "1000+",
+        "label": "Regulation and standard entries"
+      },
+      {
+        "number": "5000+",
+        "label": "Enterprise users"
+      },
+      {
+        "number": "98%",
+        "label": "Certification pass rate improvement"
+      }
+    ]
+  },
+  "complianceTools": {
+    "title": "Compliance Tool Center",
+    "subtitle": "One-stop solution for all your PPE product compliance needs for global market access",
+    "tabs": {
+      "check": "Compliance Check Wizard",
+      "package": "Compliance Package Generation",
+      "templates": "Document Template Library"
+    }
+  },
+  "complianceCheck": {
+    "title": "PPE Compliance Check Tool",
+    "subtitle": "Quickly obtain compliance reports for PPE products entering global markets, reduce certification time, and avoid compliance risks",
+    "form": {
+      "productCategory": "Product Category",
+      "productCategoryPlaceholder": "Please select product category",
+      "targetMarket": "Target Market",
+      "targetMarketPlaceholder": "Please select target market",
+      "productName": "Product Name/Model",
+      "productNamePlaceholder": "e.g. FFP2 Disposable Protective Mask",
+      "calculate": "Calculate Compliance Requirements"
+    },
+    "result": {
+      "title": "Compliance Result",
+      "subtitle": "Based on your selected product and market",
+      "emptyTip": "Fill in the form on the left to view results",
+      "requiredCertifications": "Required Certifications",
+      "estimatedCost": "Estimated Cost",
+      "processingTime": "Processing Time",
+      "riskLevel": "Risk Level",
+      "getFullReport": "Get Full Detailed Report",
+      "yourName": "Your Name",
+      "yourNamePlaceholder": "Please enter your name",
+      "yourEmail": "Your Email",
+      "yourEmailPlaceholder": "Please enter your email address",
+      "sendReport": "Send Full Report to My Email",
+      "sending": "Sending report..."
+    },
+    "success": {
+      "title": "Report sent successfully!",
+      "subtitle": "Your full compliance report has been sent to {email}, please check your inbox (check spam folder if not found)",
+      "reportContent": "The report includes the following content:",
+      "items": [
+        "Complete list of required certifications and official reference links",
+        "Detailed cost breakdown and cycle estimation",
+        "Step-by-step application process guide",
+        "List of recommended notified bodies and testing laboratories"
+      ],
+      "newReport": "Generate New Report",
+      "viewPricing": "View Pricing Plans"
+    }
+  },
+  "knowledgeBase": {
+    "title": "PPE Regulation Knowledge Base",
+    "subtitle": "Global PPE regulation and standard database, all content comes from official authoritative sources, updated monthly",
+    "searchPlaceholder": "Search regulation name, standard title or content...",
+    "productCategory": "Product Category",
+    "productCategoryPlaceholder": "Select product category",
+    "targetMarket": "Target Market",
+    "targetMarketPlaceholder": "Select target market",
+    "noResult": "No matching regulations found, please adjust your search criteria",
+    "viewOfficial": "View Official Source",
+    "lastUpdated": "Last updated on {date}"
+  },
+  "pricing": {
+    "title": "Simple and Transparent Pricing Plans",
+    "subtitle": "Choose the plan that suits you, help your foreign trade business comply with regulations and go global. All plans include 7-day no-reason refund guarantee.",
+    "plans": {
+      "free": {
+        "name": "Free Plan",
+        "price": "$0",
+        "desc": "Suitable for individual users and small foreign trade enterprises to try",
+        "cta": "Start for Free"
+      },
+      "pro": {
+        "name": "Pro Plan",
+        "price": "$299/year",
+        "desc": "Suitable for daily use of small and medium-sized foreign trade enterprises and factories",
+        "cta": "Upgrade to Pro Plan Now",
+        "popular": "Most Popular"
+      },
+      "enterprise": {
+        "name": "Enterprise Plan",
+        "price": "$899/year+",
+        "desc": "Suitable for medium and large foreign trade enterprises and certification consulting agencies",
+        "cta": "Contact Us for Customized Plan"
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "items": [
+        {
+          "question": "What payment methods are supported?",
+          "answer": "Support WeChat Pay, Alipay, bank transfer, credit card payment, and formal VAT invoices can be issued."
+        },
+        {
+          "question": "Can I get a refund after purchase?",
+          "answer": "7-day no-reason refund is supported. If you encounter any problems during use, please contact our customer service team at any time."
+        },
+        {
+          "question": "Can I upgrade my plan?",
+          "answer": "Yes, you can upgrade from Free Plan to Pro Plan, or from Pro Plan to Enterprise Plan at any time, and the cost will be converted proportionally."
+        },
+        {
+          "question": "Can Enterprise Plan customize functions?",
+          "answer": "Yes, the Enterprise Plan supports customized development of exclusive functions, including docking with your enterprise ERP, CRM systems, and customized compliance report templates."
+        }
+      ]
+    }
+  },
+  "aiAssistant": {
+    "title": "AI Compliance Assistant",
+    "subtitle": "24/7 online answers to all your compliance questions, supporting document review, report generation, and policy interpretation",
+    "categories": [
+      {
+        "id": "consult",
+        "name": "Compliance Consultation",
+        "desc": "Answer all kinds of PPE compliance related questions, including certification requirements, standard interpretation, policy consultation"
+      },
+      {
+        "id": "review",
+        "name": "Document Review",
+        "desc": "Review your compliance documents, application materials, test reports, point out problems and optimization suggestions"
+      },
+      {
+        "id": "generate",
+        "name": "Report Generation",
+        "desc": "Generate customized compliance reports and risk assessment reports based on your product and market information"
+      },
+      {
+        "id": "policy",
+        "name": "Policy Interpretation",
+        "desc": "Interpret the latest national trade policies and regulation updates, and analyze the impact on your business"
+      }
+    ],
+    "inputPlaceholder": "Please enter your question...",
+    "send": "Send",
+    "clearChat": "Clear Chat",
+    "history": "Chat History",
+    "loading": "Thinking, please wait..."
+  }
+}

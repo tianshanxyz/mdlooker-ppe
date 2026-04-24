@@ -42,3 +42,4 @@ next-env.d.ts
 .env.local
 test-connections.ts
 .memory/secret/
+MEMORY.md
