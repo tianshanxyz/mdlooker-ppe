@@ -6,9 +6,12 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ShieldCheck, FileText, Search, ExternalLink, Loader2, AlertCircle } from "lucide-react";
 import Link from "next/link";
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { createClient } from '@supabase/supabase-js';
 
-const supabase = createClientComponentClient();
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
 export default function KnowledgeBaseContent() {
   const [searchTerm, setSearchTerm] = useState('');
