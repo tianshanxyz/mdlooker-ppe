@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { ShieldCheck, FileText, Calculator, Globe, Check } from "lucide-react";
 import Link from "next/link";
-import Navbar from "@/components/Navbar";
 
 export default function Home() {
   return (
@@ -46,8 +45,7 @@ export default function Home() {
         }}
       />
       <div className="min-h-screen flex flex-col">
-      {/* Navigation */}
-      <Navbar />
+
 
       {/* Hero Section */}
       <section className="flex-1 bg-gradient-to-br from-[#339999]/5 to-white py-20">

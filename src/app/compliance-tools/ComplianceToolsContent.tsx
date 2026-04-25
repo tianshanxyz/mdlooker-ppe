@@ -5,7 +5,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ComplianceCheckContent from "../compliance-check/ComplianceCheckContent";
 import CompliancePackageContent from "../compliance-package/CompliancePackageContent";
 import TemplatesContent from "../templates/TemplatesContent";
-import Navbar from "@/components/Navbar";
 
 export default function ComplianceToolsContent() {
   const searchParams = useSearchParams();
@@ -20,7 +19,6 @@ export default function ComplianceToolsContent() {
 
   return (
     <>
-      <Navbar />
       <div className="min-h-screen bg-gradient-to-br from-[#339999]/5 to-white py-12">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto mb-10 text-center">
