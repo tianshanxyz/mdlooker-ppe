@@ -1,8 +1,9 @@
-'use client';
+"use client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { ShieldCheck, FileText, Calculator, Globe, Check } from "lucide-react";
 import Link from "next/link";
+import Navbar from "@/components/Navbar";
 
 export default function Home() {
   return (
@@ -17,10 +18,10 @@ export default function Home() {
               "@type": "WebSite",
               "name": "MDLOOKER",
               "url": "https://www.mdlooker.com",
-              "description": "Global PPE medical device compliance query platform, providing multi-national certification query, compliance standard query services.",
+              "description": "全球PPE医疗器械合规平台，为口罩及个人防护装备（PPE）提供全球注册信息、认证查询、合规标准查询服务，帮助企业快速掌握各国PPE准入要求，降低合规风险。",
               "potentialAction": {
                 "@type": "SearchAction",
-                "target": "https://www.mdlooker.com/search?q={search_term_string}",
+                "target": "https://www.mdlooker.com/compliance-check",
                 "query-input": "required name=search_term_string"
               }
             },
@@ -36,37 +37,35 @@ export default function Home() {
                 "telephone": "+86 138 0000 0000",
                 "contactType": "customer service"
               },
-              "sameAs": [
-                "https://twitter.com/mdlooker",
-                "https://www.linkedin.com/company/mdlooker"
-              ]
+              "sameAs": []
             }
           ])
         }}
       />
       <div className="min-h-screen flex flex-col">
-
+      {/* Navigation */}
+      <Navbar />
 
       {/* Hero Section */}
       <section className="flex-1 bg-gradient-to-br from-[#339999]/5 to-white py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Global PPE Medical Device Compliance Platform
+              全球PPE医疗器械合规平台
             </h1>
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              Get instant compliance reports, regulatory updates, and document templates for PPE products entering EU, US, UK, and Middle East markets. Save months of certification time and avoid costly compliance mistakes.
+              为PPE产品提供全球合规查询、认证指南、文档模板服务，帮助企业快速掌握各国准入要求，降低合规风险。
             </p>
             
             {/* 搜索框 */}
             <div className="relative w-full max-w-2xl mx-auto mb-8">
               <input
                 type="text"
-                placeholder="Search product, certification, company, regulation..."
+                placeholder="搜索产品、认证、合规标准..."
                 className="w-full pl-12 pr-4 py-4 text-lg rounded-lg border border-gray-300 shadow-sm focus:ring-2 focus:ring-[#339999] focus:border-transparent"
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' && (e.target as HTMLInputElement).value) {
-                    window.location.href = `/search?q=${encodeURIComponent((e.target as HTMLInputElement).value)}`
+                    window.location.href = `/compliance-check`;
                   }
                 }}
               />
@@ -78,27 +77,27 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/compliance-check">
                 <Button className="bg-[#339999] hover:bg-[#2d8a8a] text-white text-lg px-8 py-6 h-auto">
-                  Free Compliance Check
+                  免费合规检查
                 </Button>
               </Link>
               <Link href="/pricing">
                 <Button variant="secondary" className="text-lg px-8 py-6 h-auto">
-                  View Pricing
+                  查看定价
                 </Button>
               </Link>
             </div>
             <div className="mt-12 flex flex-wrap justify-center gap-6">
               <div className="flex items-center gap-2 text-gray-600">
                 <Check className="h-5 w-5 text-[#339999]" />
-                <span>CE, FDA, UKCA Certification Guides</span>
+                <span>CE、FDA、UKCA认证指南</span>
               </div>
               <div className="flex items-center gap-2 text-gray-600">
                 <Check className="h-5 w-5 text-[#339999]" />
-                <span>10,000+ Compliance Professionals Trust Us</span>
+                <span>覆盖30+国家地区合规标准</span>
               </div>
               <div className="flex items-center gap-2 text-gray-600">
                 <Check className="h-5 w-5 text-[#339999]" />
-                <span>99% Accuracy Rate on Compliance Reports</span>
+                <span>99%准确率的合规报告</span>
               </div>
             </div>
           </div>
@@ -109,8 +108,8 @@ export default function Home() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Everything You Need for PPE Compliance</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">End-to-end compliance solutions tailored for PPE manufacturers, exporters, and importers.</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">一站式合规解决方案</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">满足PPE企业出海全流程合规需求</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <Card className="border-gray-200 hover:shadow-lg transition-shadow">
@@ -118,15 +117,15 @@ export default function Home() {
                 <div className="h-12 w-12 rounded-lg bg-[#339999]/10 flex items-center justify-center mb-4">
                   <ShieldCheck className="h-6 w-6 text-[#339999]" />
                 </div>
-                <CardTitle>Compliance Checker</CardTitle>
-                <CardDescription>Instantly get required certifications for your product</CardDescription>
+                <CardTitle>合规检查向导</CardTitle>
+                <CardDescription>30秒生成完整合规方案</CardDescription>
               </CardHeader>
               <CardContent className="text-gray-600">
-                Select your PPE product category and target market, get a complete list of required certifications, estimated costs, and processing time in 30 seconds.
+                选择产品类别和目标市场，自动获取所需认证清单、费用预估、周期说明。
               </CardContent>
               <CardFooter>
                 <Link href="/compliance-check" className="text-[#339999] font-medium hover:underline">
-                  Try it Free →
+                  立即使用 →
                 </Link>
               </CardFooter>
             </Card>
@@ -136,15 +135,15 @@ export default function Home() {
                 <div className="h-12 w-12 rounded-lg bg-[#339999]/10 flex items-center justify-center mb-4">
                   <FileText className="h-6 w-6 text-[#339999]" />
                 </div>
-                <CardTitle>Document Templates</CardTitle>
-                <CardDescription>Ready-to-use compliance document templates</CardDescription>
+                <CardTitle>文档模板库</CardTitle>
+                <CardDescription>专业合规文档直接使用</CardDescription>
               </CardHeader>
               <CardContent className="text-gray-600">
-                Download professionally drafted DoC (Declaration of Conformity), technical file, label, and customs declaration templates aligned with latest regulations.
+                DoC声明、标签模板、技术文件、报关资料等专业模板，节省90%文档准备时间。
               </CardContent>
               <CardFooter>
                 <Link href="/templates" className="text-[#339999] font-medium hover:underline">
-                  Browse Templates →
+                  查看模板 →
                 </Link>
               </CardFooter>
             </Card>
@@ -154,15 +153,15 @@ export default function Home() {
                 <div className="h-12 w-12 rounded-lg bg-[#339999]/10 flex items-center justify-center mb-4">
                   <Calculator className="h-6 w-6 text-[#339999]" />
                 </div>
-                <CardTitle>Cost Calculator</CardTitle>
-                <CardDescription>Accurately calculate your total compliance cost</CardDescription>
+                <CardTitle>合规包生成</CardTitle>
+                <CardDescription>一键生成全套合规资料</CardDescription>
               </CardHeader>
               <CardContent className="text-gray-600">
-                Input your product details, quantity, and target markets to get an accurate breakdown of all certification, testing, and consulting costs with no hidden fees.
+                自定义配置生成全套合规资料包，包含认证要求、测试标准、申请材料模板。
               </CardContent>
               <CardFooter>
-                <Link href="/calculator" className="text-[#339999] font-medium hover:underline">
-                  Calculate Now →
+                <Link href="/compliance-package" className="text-[#339999] font-medium hover:underline">
+                  生成合规包 →
                 </Link>
               </CardFooter>
             </Card>
@@ -172,15 +171,15 @@ export default function Home() {
                 <div className="h-12 w-12 rounded-lg bg-[#339999]/10 flex items-center justify-center mb-4">
                   <Globe className="h-6 w-6 text-[#339999]" />
                 </div>
-                <CardTitle>Regulatory Knowledge Base</CardTitle>
-                <CardDescription>Up-to-date global PPE regulation database</CardDescription>
+                <CardTitle>法规知识库</CardTitle>
+                <CardDescription>最新全球合规标准库</CardDescription>
               </CardHeader>
               <CardContent className="text-gray-600">
-                Access the latest EU 2016/425, FDA, UKCA, and GCC PPE regulations, updated monthly with official sources cited for full traceability.
+                实时更新欧盟、美国、英国、中东等全球最新PPE法规标准，官方来源可追溯。
               </CardContent>
               <CardFooter>
                 <Link href="/knowledge-base" className="text-[#339999] font-medium hover:underline">
-                  Explore Database →
+                  浏览知识库 →
                 </Link>
               </CardFooter>
             </Card>
@@ -192,19 +191,19 @@ export default function Home() {
       <section className="py-20 bg-[#339999]/5">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto bg-[#339999] rounded-2xl p-8 md:p-12 text-white text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Simplify Your PPE Compliance?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">准备好简化您的PPE合规流程？</h2>
             <p className="text-xl mb-8 text-white/90 max-w-2xl mx-auto">
-              Start with a free compliance check for your product, or upgrade to Pro for unlimited access to all tools and templates.
+              立即开始免费合规检查，获取您的产品进入目标市场的完整合规方案。
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/compliance-check">
                 <Button className="bg-white text-[#339999] hover:bg-gray-100 text-lg px-8 py-6 h-auto">
-                  Free Compliance Check
+                  免费合规检查
                 </Button>
               </Link>
               <Link href="/pricing">
                 <Button variant="secondary" className="bg-[#339999]/20 text-white border-white hover:bg-[#339999]/30 text-lg px-8 py-6 h-auto">
-                  View Pricing
+                  查看定价
                 </Button>
               </Link>
             </div>
@@ -215,50 +214,39 @@ export default function Home() {
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-3 gap-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <img src="/logo.png" alt="MDLOOKER Logo" className="h-6 w-6" />
+                <img src="/logo.png" alt="MDLOOKER Logo" className="h-8 w-8" />
                 <span className="font-bold text-xl">MDLOOKER</span>
               </div>
               <p className="text-gray-400 mb-4">
-                Your trusted partner for PPE compliance solutions, helping businesses navigate global regulatory requirements efficiently.
+                您的专业PPE合规伙伴，帮助企业高效完成全球市场合规准入。
               </p>
+              <p className="text-gray-400">邮箱：support@mdlooker.com</p>
             </div>
             <div>
-              <h3 className="font-semibold text-lg mb-4">Product</h3>
+              <h3 className="font-semibold text-lg mb-4">核心功能</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><Link href="/search" className="hover:text-[#339999]">Data Search</Link></li>
-                <li><Link href="/compliance-check" className="hover:text-[#339999]">Compliance Check</Link></li>
-                <li><Link href="/compliance-package" className="hover:text-[#339999]">Compliance Package</Link></li>
-                <li><Link href="/company-score" className="hover:text-[#339999]">Company Rating</Link></li>
-                <li><Link href="/knowledge-base" className="hover:text-[#339999]">Knowledge Base</Link></li>
-                <li><Link href="/templates" className="hover:text-[#339999]">Templates</Link></li>
-                <li><Link href="/calculator" className="hover:text-[#339999]">Cost Calculator</Link></li>
-                <li><Link href="/dashboard" className="hover:text-[#339999]">Industry Dashboard</Link></li>
-                <li><Link href="/warning" className="hover:text-[#339999]">Alert Center</Link></li>
+                <li><Link href="/compliance-check" className="hover:text-[#339999]">合规检查向导</Link></li>
+                <li><Link href="/compliance-tools" className="hover:text-[#339999]">合规工具中心</Link></li>
+                <li><Link href="/knowledge-base" className="hover:text-[#339999]">法规知识库</Link></li>
+                <li><Link href="/templates" className="hover:text-[#339999]">文档模板库</Link></li>
+                <li><Link href="/pricing" className="hover:text-[#339999]">定价方案</Link></li>
               </ul>
             </div>
             <div>
-              <h3 className="font-semibold text-lg mb-4">Company</h3>
+              <h3 className="font-semibold text-lg mb-4">合规市场</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><Link href="/about" className="hover:text-[#339999]">About Us</Link></li>
-                <li><Link href="/contact" className="hover:text-[#339999]">Contact</Link></li>
-                <li><Link href="/privacy" className="hover:text-[#339999]">Privacy Policy</Link></li>
-                <li><Link href="/terms" className="hover:text-[#339999]">Terms of Service</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold text-lg mb-4">Contact</h3>
-              <ul className="space-y-2 text-gray-400">
-                <li>Email: support@mdlooker.com</li>
-                <li>Phone: +86 138 0000 0000</li>
-                <li>Address: Nanjing, Jiangsu, China</li>
+                <li><Link href="/knowledge-base?market=eu" className="hover:text-[#339999]">欧盟CE认证</Link></li>
+                <li><Link href="/knowledge-base?market=us" className="hover:text-[#339999]">美国FDA认证</Link></li>
+                <li><Link href="/knowledge-base?market=uk" className="hover:text-[#339999]">英国UKCA认证</Link></li>
+                <li><Link href="/knowledge-base?market=middle_east" className="hover:text-[#339999]">中东GCC认证</Link></li>
               </ul>
             </div>
           </div>
           <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
-            <p>&copy; 2026 MDLOOKER. All rights reserved.</p>
+            <p>&copy; 2026 MDLOOKER. 保留所有权利。</p>
           </div>
         </div>
       </footer>

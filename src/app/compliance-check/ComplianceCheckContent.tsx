@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { ShieldCheck, Send, CheckCircle, AlertTriangle, FileDown } from "lucide-react";
 import emailjs from '@emailjs/browser';
 import Link from "next/link";
+import Navbar from "@/components/Navbar";
 
 const complianceRules = {
   masks: {
@@ -156,6 +157,7 @@ export default function ComplianceCheckContent() {
   if (submitted) {
     return (
       <div className="min-h-screen bg-gray-50">
+        <Navbar />
         <div className="container mx-auto px-4 py-12">
           <div className="max-w-3xl mx-auto">
             <Card className="text-center">

@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from "@/components/ui/button";
 import { Check, X, ShieldCheck, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import Navbar from "@/components/Navbar";
 
 const pricingPlans = [
   {
@@ -76,7 +77,9 @@ const faq = [
 
 export default function PricingContent() {
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-gray-50">
+      <Navbar />
+      <div className="py-12">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto mb-12 text-center">
           <ShieldCheck className="h-12 w-12 text-[#339999] mx-auto mb-4" />

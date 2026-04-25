@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ShieldCheck, FileText, Search, ExternalLink, Loader2, AlertCircle } from "lucide-react";
 import Link from "next/link";
+import Navbar from "@/components/Navbar";
 import { createClient } from '@supabase/supabase-js';
 
 const supabase = createClient(
@@ -66,6 +67,7 @@ export default function KnowledgeBaseContent() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <Navbar />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto mb-12 text-center">
           <img src="/logo.png" alt="MDLOOKER Logo" className="h-12 w-12 mx-auto mb-4" />
