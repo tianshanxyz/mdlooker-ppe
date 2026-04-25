@@ -1,94 +1,104 @@
 'use client';
-
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ShieldCheck, Send, CheckCircle, AlertTriangle, FileDown } from "lucide-react";
-import emailjs from '@emailjs/browser';
 import Link from "next/link";
-import Navbar from "@/components/Navbar";
 
 const complianceRules = {
   masks: {
     eu: {
-      certifications: ["CE (PPE Regulation 2016/425)", "EN 149:2001+A1:2009", "Bsi/Notified Body Audit"],
-      cost: "$12,000 - $18,000",
-      time: "4 - 6 weeks",
+      certifications: ["CE (PPE Regulation 2016/425)", "EN 149:2001+A1:2009", "公告机构审核"],
+      cost: "¥70,000 - ¥120,000",
+      time: "4 - 6周",
       riskLevel: "Medium",
     },
     us: {
-      certifications: ["FDA 510(k) Clearance", "NIOSH Approval", "ASTM F2100 Level 1/2/3 Testing"],
-      cost: "$25,000 - $40,000",
-      time: "8 - 12 weeks",
+      certifications: ["FDA 510(k) Clearance", "NIOSH Approval", "ASTM F2100 Level 测试"],
+      cost: "¥180,000 - ¥300,000",
+      time: "8 - 12周",
       riskLevel: "High",
     },
     uk: {
-      certifications: ["UKCA Marking", "BS EN 149:2001+A1:2009", "UK Approved Body Certification"],
-      cost: "$10,000 - $15,000",
-      time: "3 - 5 weeks",
+      certifications: ["UKCA Marking", "BS EN 149:2001+A1:2009", "英国授权机构认证"],
+      cost: "¥60,000 - ¥100,000",
+      time: "3 - 5周",
       riskLevel: "Medium",
     },
     middle_east: {
-      certifications: ["GCC Conformity Mark", "SASO Certification", "Local Agent Registration"],
-      cost: "$8,000 - $12,000",
-      time: "2 - 4 weeks",
+      certifications: ["GCC Conformity Mark", "SASO Certification", "本地代理商注册"],
+      cost: "¥50,000 - ¥80,000",
+      time: "2 - 4周",
       riskLevel: "Low",
     }
   },
   protective_clothing: {
     eu: {
-      certifications: ["CE (PPE Regulation 2016/425)", "EN 14126:2003 (Infection Protection)", "EN ISO 13688:2013"],
-      cost: "$15,000 - $22,000",
-      time: "5 - 7 weeks",
+      certifications: ["CE (PPE Regulation 2016/425)", "EN 14126:2003 感染防护测试", "EN ISO 13688:2013"],
+      cost: "¥100,000 - ¥150,000",
+      time: "5 - 7周",
       riskLevel: "Medium",
     },
     us: {
-      certifications: ["FDA Clearance", "NFPA 1999 Certification", "ASTM F1670/F1671 Testing"],
-      cost: "$30,000 - $45,000",
-      time: "10 - 14 weeks",
+      certifications: ["FDA Clearance", "NFPA 1999 认证", "ASTM F1670/F1671 测试"],
+      cost: "¥200,000 - ¥350,000",
+      time: "10 - 14周",
       riskLevel: "High",
     },
     uk: {
-      certifications: ["UKCA Marking", "BS EN 14126:2003", "UK Approved Body Audit"],
-      cost: "$12,000 - $18,000",
-      time: "4 - 6 weeks",
+      certifications: ["UKCA Marking", "BS EN 14126:2003", "英国授权机构审核"],
+      cost: "¥80,000 - ¥120,000",
+      time: "4 - 6周",
       riskLevel: "Medium",
     },
     middle_east: {
-      certifications: ["GCC Mark", "GSO Standard Certification", "Local Registration"],
-      cost: "$9,000 - $14,000",
-      time: "3 - 5 weeks",
+      certifications: ["GCC Mark", "GSO 标准认证", "本地注册"],
+      cost: "¥60,000 - ¥90,000",
+      time: "3 - 5周",
       riskLevel: "Low",
     }
   },
   gloves: {
     eu: {
-      certifications: ["CE (PPE Regulation 2016/425)", "EN 455 Series Testing", "EN 374 Series (Chemical Resistant)"],
-      cost: "$8,000 - $12,000",
-      time: "3 - 5 weeks",
+      certifications: ["CE (PPE Regulation 2016/425)", "EN 455 系列测试", "EN 374 化学防护测试（如需）"],
+      cost: "¥50,000 - ¥80,000",
+      time: "3 - 5周",
       riskLevel: "Low",
     },
     us: {
-      certifications: ["FDA 510(k) / 21 CFR Part 820", "ASTM D3577 / D3578 Testing", "NIOSH Approval (If Applicable)"],
-      cost: "$15,000 - $25,000",
-      time: "6 - 10 weeks",
+      certifications: ["FDA 510(k) / 21 CFR Part 820", "ASTM D3577 测试", "NIOSH Approval（如需）"],
+      cost: "¥100,000 - ¥180,000",
+      time: "6 - 10周",
       riskLevel: "Medium",
     },
     uk: {
-      certifications: ["UKCA Marking", "BS EN 455 Series Testing", "UK Approved Body Certification"],
-      cost: "$7,000 - $10,000",
-      time: "2 - 4 weeks",
+      certifications: ["UKCA Marking", "BS EN 455 系列测试", "英国授权机构认证"],
+      cost: "¥45,000 - ¥70,000",
+      time: "2 - 4周",
       riskLevel: "Low",
     },
     middle_east: {
-      certifications: ["GCC Conformity Mark", "GSO EN 455 Certification", "Local Import Registration"],
-      cost: "$6,000 - $9,000",
-      time: "2 - 3 weeks",
+      certifications: ["GCC Conformity Mark", "GSO EN 455 认证", "本地进口注册"],
+      cost: "¥40,000 - ¥60,000",
+      time: "2 - 3周",
       riskLevel: "Low",
     }
   }
+};
+
+const categoryLabels = {
+  masks: "口罩（医用/防护/一次性）",
+  protective_clothing: "防护服（隔离衣/手术衣/防护衣）",
+  gloves: "防护手套（医用/工业/一次性）"
+};
+
+const marketLabels = {
+  eu: "欧盟（EU）",
+  us: "美国（USA）",
+  uk: "英国（UK）",
+  middle_east: "中东（GCC）"
 };
 
 export default function ComplianceCheckContent() {
@@ -107,12 +117,12 @@ export default function ComplianceCheckContent() {
   const handleCalculate = () => {
     if (!formData.productCategory || !formData.targetMarket) {
       setNotification({ type: 'error', message: "请先选择产品类别和目标市场" });
-      // 3秒后自动关闭提示
       setTimeout(() => setNotification(null), 3000);
       return;
     }
     const rule = complianceRules[formData.productCategory as keyof typeof complianceRules][formData.targetMarket as keyof typeof complianceRules.masks];
     setResult(rule);
+    window.scrollTo({ top: document.getElementById('result-section')?.offsetTop - 100, behavior: 'smooth' });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -125,23 +135,8 @@ export default function ComplianceCheckContent() {
 
     setLoading(true);
     try {
-      await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
-        {
-          user_name: formData.userName,
-          product_category: formData.productCategory === 'masks' ? 'Face Masks' : 
-                            formData.productCategory === 'protective_clothing' ? 'Protective Clothing' : 'Protective Gloves',
-          target_market: formData.targetMarket.toUpperCase(),
-          required_certifications: result.certifications.join(", "),
-          estimated_cost: result.cost,
-          estimated_time: result.time,
-          risk_level: result.riskLevel,
-          report_download_link: "https://mdlooker.com/download/compliance-report.pdf",
-          to_email: formData.userEmail,
-        },
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
-      );
+      // 模拟发送邮件
+      await new Promise(resolve => setTimeout(resolve, 1500));
       setSubmitted(true);
       setNotification({ type: 'success', message: "报告已成功发送到您的邮箱！请注意查收" });
       setTimeout(() => setNotification(null), 5000);
@@ -156,9 +151,8 @@ export default function ComplianceCheckContent() {
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-gray-50">
-        <Navbar />
-        <div className="container mx-auto px-4 py-12">
+      <div className="min-h-screen bg-gray-50 py-12">
+        <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <Card className="text-center">
               <CardHeader>
@@ -221,21 +215,16 @@ export default function ComplianceCheckContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navbar />
-      {/* Global Notification */}
+    <div className="min-h-screen bg-gray-50 py-12">
+      {/* 全局通知 */}
       {notification && (
-        <div className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 px-6 py-3 rounded-lg shadow-lg max-w-md w-full flex items-center gap-3 ${
+        <div className={`fixed top-20 left-1/2 transform -translate-x-1/2 z-50 px-6 py-3 rounded-lg shadow-lg max-w-md w-full flex items-center gap-3 ${
           notification.type === 'success' ? 'bg-green-50 border border-green-200 text-green-800' : 'bg-red-50 border border-red-200 text-red-800'
         }`}>
           {notification.type === 'success' ? (
-            <svg className="h-5 w-5 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
+            <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
           ) : (
-            <svg className="h-5 w-5 text-red-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
+            <AlertTriangle className="h-5 w-5 text-red-500 flex-shrink-0" />
           )}
           <p className="text-sm font-medium">{notification.message}</p>
           <button 
@@ -274,9 +263,9 @@ export default function ComplianceCheckContent() {
                     <SelectValue placeholder="请选择产品类别" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="masks">口罩（医用/防护/一次性）</SelectItem>
-                    <SelectItem value="protective_clothing">防护服（隔离衣/手术衣/防护衣）</SelectItem>
-                    <SelectItem value="gloves">防护手套（医用/工业/一次性）</SelectItem>
+                    {Object.entries(categoryLabels).map(([value, label]) => (
+                      <SelectItem key={value} value={value}>{label}</SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>
@@ -291,10 +280,9 @@ export default function ComplianceCheckContent() {
                     <SelectValue placeholder="请选择目标市场" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="eu">欧盟（EU）</SelectItem>
-                    <SelectItem value="us">美国（USA）</SelectItem>
-                    <SelectItem value="uk">英国（UK）</SelectItem>
-                    <SelectItem value="middle_east">中东（GCC）</SelectItem>
+                    {Object.entries(marketLabels).map(([value, label]) => (
+                      <SelectItem key={value} value={value}>{label}</SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>
@@ -318,7 +306,7 @@ export default function ComplianceCheckContent() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card id="result-section">
             <CardHeader>
               <CardTitle>合规结果</CardTitle>
               <CardDescription>
@@ -360,7 +348,7 @@ export default function ComplianceCheckContent() {
                         result.riskLevel === 'High' ? 'text-red-600' : 
                         result.riskLevel === 'Medium' ? 'text-amber-600' : 'text-green-600'
                       }`}>
-                        {result.riskLevel}
+                        {result.riskLevel === 'High' ? '高风险' : result.riskLevel === 'Medium' ? '中风险' : '低风险'}
                       </p>
                     </div>
                   </div>

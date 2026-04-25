@@ -1,59 +1,157 @@
 'use client';
-
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { FileText, Download, Globe, FileCheck, FileIcon, Loader2, AlertCircle } from "lucide-react";
-import { createClient } from '@supabase/supabase-js';
+import { FileText, Download, Globe, FileCheck, FileIcon } from "lucide-react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+// 静态模板数据
+const templates = [
+  {
+    id: 1,
+    category: "DoC声明",
+    market: "eu",
+    title: "EU PPE DoC符合性声明模板",
+    description: "符合欧盟2016/425法规要求的符合性声明模板，可直接编辑填写产品信息，无需调整格式。",
+    format: "Word",
+    size: "24KB",
+    downloadUrl: "#"
+  },
+  {
+    id: 2,
+    category: "DoC声明",
+    market: "us",
+    title: "美国FDA DoC符合性声明模板",
+    description: "符合美国FDA要求的医疗器械/PPE产品符合性声明模板，包含所有必填字段。",
+    format: "Word",
+    size: "22KB",
+    downloadUrl: "#"
+  },
+  {
+    id: 3,
+    category: "DoC声明",
+    market: "uk",
+    title: "UKCA DoC符合性声明模板",
+    description: "符合英国UKCA认证要求的符合性声明模板，满足英国市场准入要求。",
+    format: "Word",
+    size: "21KB",
+    downloadUrl: "#"
+  },
+  {
+    id: 4,
+    category: "标签模板",
+    market: "通用",
+    title: "PPE产品包装标签模板",
+    description: "包含CE/UKCA/FDA标识、产品信息、生产信息的通用标签模板，支持自定义调整。",
+    format: "AI + Word",
+    size: "1.2MB",
+    downloadUrl: "#"
+  },
+  {
+    id: 5,
+    category: "标签模板",
+    market: "eu",
+    title: "欧盟CE产品说明书模板",
+    description: "符合欧盟PPE法规要求的产品说明书模板，包含所有必要信息项和合规标识。",
+    format: "Word",
+    size: "36KB",
+    downloadUrl: "#"
+  },
+  {
+    id: 6,
+    category: "技术文档",
+    market: "通用",
+    title: "PPE产品技术文件全套模板",
+    description: "包含风险评估报告、测试报告清单、合格评定流程等全套技术文档模板，公告机构认可。",
+    format: "Word 压缩包",
+    size: "2.3MB",
+    downloadUrl: "#"
+  },
+  {
+    id: 7,
+    category: "技术文档",
+    market: "us",
+    title: "FDA 510(k)申请文件模板",
+    description: "美国FDA 510(k)认证申请全套文件模板，包含所有要求的章节和格式，提高申请通过率。",
+    format: "Word 压缩包",
+    size: "3.7MB",
+    downloadUrl: "#"
+  },
+  {
+    id: 8,
+    category: "报关文件",
+    market: "通用",
+    title: "PPE产品出口报关单模板",
+    description: "海关报关单、商业发票、装箱单全套模板，符合各国海关申报要求，减少清关问题。",
+    format: "Excel + Word",
+    size: "128KB",
+    downloadUrl: "#"
+  },
+  {
+    id: 9,
+    category: "报关文件",
+    market: "eu",
+    title: "欧盟CE认证清关资料模板",
+    description: "欧盟进口清关所需的全套资料模板，包括DoC、测试报告清单等，提高清关效率。",
+    format: "Word 压缩包",
+    size: "420KB",
+    downloadUrl: "#"
+  },
+  {
+    id: 10,
+    category: "其他模板",
+    market: "通用",
+    title: "供应商合规审核检查表模板",
+    description: "工厂审核、供应商合规性评估的检查清单模板，可直接使用，覆盖所有合规要点。",
+    format: "Excel",
+    size: "32KB",
+    downloadUrl: "#"
+  },
+  {
+    id: 11,
+    category: "其他模板",
+    market: "通用",
+    title: "产品合规风险评估表模板",
+    description: "PPE产品合规风险评估工具，帮助识别和降低合规风险，符合公告机构审核要求。",
+    format: "Excel",
+    size: "47KB",
+    downloadUrl: "#"
+  },
+  {
+    id: 12,
+    category: "其他模板",
+    market: "通用",
+    title: "认证申请进度跟踪表模板",
+    description: "跟踪多个认证项目进度、费用、节点的管理模板，提高项目管理效率。",
+    format: "Excel",
+    size: "28KB",
+    downloadUrl: "#"
+  }
+];
+
+const categoryLabels = {
+  all: "所有类别",
+  "DoC声明": "DoC声明",
+  "标签模板": "标签模板",
+  "技术文档": "技术文档",
+  "报关文件": "报关文件",
+  "其他模板": "其他模板"
+};
+
+const marketLabels = {
+  all: "所有市场",
+  eu: "欧盟",
+  us: "美国",
+  uk: "英国",
+  middle_east: "中东",
+  通用: "通用"
+};
 
 export default function TemplatesContent() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedMarket, setSelectedMarket] = useState('all');
-  const [templates, setTemplates] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-
-  // 从Supabase加载模板数据
-  useEffect(() => {
-    const fetchTemplates = async () => {
-      try {
-        setLoading(true);
-        const { data, error } = await supabase
-          .from('templates')
-          .select('*')
-          .order('created_at', { ascending: false });
-        
-        if (error) throw error;
-        
-        // 转换字段名匹配之前的格式
-        const formattedData = data.map(item => ({
-          id: item.id,
-          category: item.category,
-          market: item.market,
-          title: item.title,
-          description: item.description,
-          format: item.format,
-          size: item.size,
-          downloadUrl: item.download_url
-        }));
-        
-        setTemplates(formattedData);
-      } catch (err) {
-        console.error('加载模板数据失败:', err);
-        setError('数据加载失败，请稍后重试');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchTemplates();
-  }, []);
 
   // 过滤模板
   const filteredTemplates = templates.filter(template => {
@@ -62,14 +160,19 @@ export default function TemplatesContent() {
     return matchesCategory && matchesMarket;
   });
 
+  const handleDownload = (url: string, title: string) => {
+    alert(`《${title}》模板下载功能正在开发中，如需获取请联系客服 support@mdlooker.com`);
+  };
+
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="container mx-auto px-4">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
+      <Navbar />
+      <div className="container mx-auto px-4 py-12 flex-grow">
         <div className="max-w-3xl mx-auto mb-12 text-center">
-          <img src="/logo.png" alt="H-Guardian Logo" className="h-12 w-12 mx-auto mb-4" />
+          <img src="/logo.png" alt="MDLOOKER Logo" className="h-12 w-12 mx-auto mb-4" />
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">合规文档模板库</h1>
           <p className="text-xl text-gray-600">
-            经过专业律师和认证机构审核的合规文档模板，直接编辑即可使用，节省大量时间。
+            经过专业律师和认证机构审核的合规文档模板，直接编辑即可使用，节省90%文档准备时间。
           </p>
         </div>
 
@@ -83,12 +186,9 @@ export default function TemplatesContent() {
                   <SelectValue placeholder="选择模板类别" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">全部类别</SelectItem>
-                  <SelectItem value="DoC声明">DoC声明</SelectItem>
-                  <SelectItem value="标签模板">标签模板</SelectItem>
-                  <SelectItem value="技术文档">技术文档</SelectItem>
-                  <SelectItem value="报关文件">报关文件</SelectItem>
-                  <SelectItem value="其他模板">其他模板</SelectItem>
+                  {Object.entries(categoryLabels).map(([value, label]) => (
+                    <SelectItem key={value} value={value}>{label}</SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>
@@ -99,79 +199,61 @@ export default function TemplatesContent() {
                   <SelectValue placeholder="选择适用市场" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">全部市场</SelectItem>
-                  <SelectItem value="欧盟">欧盟（EU）</SelectItem>
-                  <SelectItem value="美国">美国（USA）</SelectItem>
-                  <SelectItem value="英国">英国（UK）</SelectItem>
-                  <SelectItem value="中东">中东（GCC）</SelectItem>
-                  <SelectItem value="通用">通用</SelectItem>
+                  {Object.entries(marketLabels).map(([value, label]) => (
+                    <SelectItem key={value} value={value}>{label}</SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>
           </div>
         </div>
 
-        {/* 加载状态 */}
-        {loading && (
-          <div className="text-center py-16 text-gray-500 max-w-6xl mx-auto">
-            <Loader2 className="h-12 w-12 mx-auto mb-4 text-[#339999] animate-spin" />
-            <p>正在加载模板数据，请稍候...</p>
-          </div>
-        )}
-
-        {/* 错误状态 */}
-        {error && !loading && (
-          <div className="text-center py-16 text-red-500 max-w-6xl mx-auto">
-            <AlertCircle className="h-12 w-12 mx-auto mb-4 text-red-500" />
-            <p>{error}</p>
-          </div>
-        )}
-
         {/* 模板列表 */}
-        {!loading && !error && (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {filteredTemplates.length === 0 ? (
-              <div className="col-span-3 text-center py-12 text-gray-500">
-                <FileIcon className="h-12 w-12 mx-auto mb-4 text-gray-400" />
-                <p>No matching templates found, please adjust your search criteria.</p>
-              </div>
-            ) : (
-              filteredTemplates.map(template => (
-                <Card key={template.id} className="hover:shadow-md transition-shadow">
-                  <CardHeader className="pb-4">
-                    <div className="flex justify-between items-start">
-                      <div className="h-10 w-10 rounded-lg bg-[#339999]/10 flex items-center justify-center">
-                        <FileIcon className="h-5 w-5 text-[#339999]" />
-                      </div>
-                      <span className="inline-block px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs font-medium">
-                        {template.format} · {template.size}
-                      </span>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {filteredTemplates.length === 0 ? (
+            <div className="col-span-3 text-center py-12 text-gray-500">
+              <FileIcon className="h-12 w-12 mx-auto mb-4 text-gray-400" />
+              <p>未找到匹配的模板，请调整搜索条件。</p>
+            </div>
+          ) : (
+            filteredTemplates.map(template => (
+              <Card key={template.id} className="hover:shadow-md transition-shadow flex flex-col">
+                <CardHeader className="pb-4">
+                  <div className="flex justify-between items-start">
+                    <div className="h-10 w-10 rounded-lg bg-[#339999]/10 flex items-center justify-center">
+                      <FileIcon className="h-5 w-5 text-[#339999]" />
                     </div>
-                    <CardTitle className="text-lg font-semibold text-gray-900 mt-3">{template.title}</CardTitle>
-                    <CardDescription className="mt-1">
-                      <span className="inline-block px-2 py-0.5 bg-[#339999]/10 text-[#339999] rounded text-xs font-medium mr-2">
-                        {template.category}
+                    <span className="inline-block px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs font-medium">
+                      {template.format} · {template.size}
+                    </span>
+                  </div>
+                  <CardTitle className="text-lg font-semibold text-gray-900 mt-3">{template.title}</CardTitle>
+                  <CardDescription className="mt-1">
+                    <span className="inline-block px-2 py-0.5 bg-[#339999]/10 text-[#339999] rounded text-xs font-medium mr-2">
+                      {template.category}
+                    </span>
+                    {template.market !== "通用" && (
+                      <span className="inline-flex items-center px-2 py-0.5 bg-blue-100 text-blue-700 rounded text-xs font-medium">
+                        <Globe className="h-3 w-3 mr-1" /> {marketLabels[template.market as keyof typeof marketLabels]}
                       </span>
-                      {template.market !== "通用" && (
-                        <span className="inline-flex items-center px-2 py-0.5 bg-blue-100 text-blue-700 rounded text-xs font-medium">
-                          <Globe className="h-3 w-3 mr-1" /> {template.market}
-                        </span>
-                      )}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600 mb-4 text-sm h-12">{template.description}</p>
-                    <a href={template.downloadUrl} className="block w-full">
-                      <Button className="w-full bg-[#339999] hover:bg-[#2d8a8a] text-white">
-                        <Download className="mr-2 h-4 w-4" /> 下载模板
-                      </Button>
-                    </a>
-                  </CardContent>
-                </Card>
-              ))
-            )}
-          </div>
-        )}
+                    )}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="flex-grow">
+                  <p className="text-gray-600 mb-4 text-sm h-12">{template.description}</p>
+                </CardContent>
+                <CardFooter>
+                  <Button 
+                    className="w-full bg-[#339999] hover:bg-[#2d8a8a] text-white"
+                    onClick={() => handleDownload(template.downloadUrl, template.title)}
+                  >
+                    <Download className="mr-2 h-4 w-4" /> 下载模板
+                  </Button>
+                </CardFooter>
+              </Card>
+            ))
+          )}
+        </div>
 
         {/* 底部提示 */}
         <div className="max-w-3xl mx-auto mt-16 bg-[#339999]/5 p-6 rounded-xl border border-[#339999]/20">
@@ -189,6 +271,7 @@ export default function TemplatesContent() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

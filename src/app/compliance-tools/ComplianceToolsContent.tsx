@@ -1,14 +1,16 @@
 "use client";
 import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ComplianceCheckContent from "../compliance-check/ComplianceCheckContent";
 import CompliancePackageContent from "../compliance-package/CompliancePackageContent";
 import TemplatesContent from "../templates/TemplatesContent";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export default function ComplianceToolsContent() {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const tabParam = searchParams.get("tab");
   const [activeTab, setActiveTab] = useState(tabParam || "check");
 
@@ -18,17 +20,22 @@ export default function ComplianceToolsContent() {
     }
   }, [tabParam]);
 
+  const handleTabChange = (value: string) => {
+    setActiveTab(value);
+    router.push(`/compliance-tools?tab=${value}`);
+  };
+
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       <Navbar />
-      <div className="min-h-screen bg-gradient-to-br from-[#339999]/5 to-white py-12">
+      <div className="flex-grow bg-gradient-to-br from-[#339999]/5 to-white py-12">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto mb-10 text-center">
+          <div className="max-w-3xl mx-auto mb-10 text-center">
             <h1 className="text-4xl font-bold text-gray-900 mb-4">合规工具中心</h1>
-            <p className="text-xl text-gray-600">一站式满足您的PPE产品合规出海全流程需求</p>
+            <p className="text-xl text-gray-600">一站式满足您的PPE产品合规出海全流程需求。</p>
           </div>
 
-          <Tabs defaultValue="check" value={activeTab} onValueChange={setActiveTab} className="max-w-6xl mx-auto">
+          <Tabs defaultValue="check" value={activeTab} onValueChange={handleTabChange} className="max-w-6xl mx-auto">
             <TabsList className="grid w-full grid-cols-3 mb-8">
               <TabsTrigger value="check" className="text-lg py-3">
                 合规检查向导
@@ -52,6 +59,7 @@ export default function ComplianceToolsContent() {
           </Tabs>
         </div>
       </div>
-    </>
+      <Footer />
+    </div>
   );
 }

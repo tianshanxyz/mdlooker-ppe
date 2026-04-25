@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { ShieldCheck, FileText, Calculator, Globe, Check } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -21,7 +22,7 @@ export default function Home() {
               "description": "全球PPE医疗器械合规平台，为口罩及个人防护装备（PPE）提供全球注册信息、认证查询、合规标准查询服务，帮助企业快速掌握各国PPE准入要求，降低合规风险。",
               "potentialAction": {
                 "@type": "SearchAction",
-                "target": "https://www.mdlooker.com/compliance-check",
+                "target": "https://www.mdlooker.com/knowledge-base?search={search_term_string}",
                 "query-input": "required name=search_term_string"
               }
             },
@@ -65,11 +66,11 @@ export default function Home() {
                 className="w-full pl-12 pr-4 py-4 text-lg rounded-lg border border-gray-300 shadow-sm focus:ring-2 focus:ring-[#339999] focus:border-transparent"
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' && (e.target as HTMLInputElement).value) {
-                    window.location.href = `/compliance-check`;
+                    window.location.href = `/knowledge-base?search=${encodeURIComponent((e.target as HTMLInputElement).value)}`;
                   }
                 }}
               />
-              <svg xmlns="http://www.w3.org/2000/svg" className="absolute left-4 top-1/2 -translate-y-1/2 h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="absolute left-3 top-1/2 -translate-y-1/2 h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </div>
@@ -109,7 +110,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">一站式合规解决方案</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">满足PPE企业出海全流程合规需求</p>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">满足PPE企业出海全流程合规需求。</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <Card className="border-gray-200 hover:shadow-lg transition-shadow">
@@ -211,45 +212,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <img src="/logo.png" alt="MDLOOKER Logo" className="h-8 w-8" />
-                <span className="font-bold text-xl">MDLOOKER</span>
-              </div>
-              <p className="text-gray-400 mb-4">
-                您的专业PPE合规伙伴，帮助企业高效完成全球市场合规准入。
-              </p>
-              <p className="text-gray-400">邮箱：support@mdlooker.com</p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-lg mb-4">核心功能</h3>
-              <ul className="space-y-2 text-gray-400">
-                <li><Link href="/compliance-check" className="hover:text-[#339999]">合规检查向导</Link></li>
-                <li><Link href="/compliance-tools" className="hover:text-[#339999]">合规工具中心</Link></li>
-                <li><Link href="/knowledge-base" className="hover:text-[#339999]">法规知识库</Link></li>
-                <li><Link href="/templates" className="hover:text-[#339999]">文档模板库</Link></li>
-                <li><Link href="/pricing" className="hover:text-[#339999]">定价方案</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold text-lg mb-4">合规市场</h3>
-              <ul className="space-y-2 text-gray-400">
-                <li><Link href="/knowledge-base?market=eu" className="hover:text-[#339999]">欧盟CE认证</Link></li>
-                <li><Link href="/knowledge-base?market=us" className="hover:text-[#339999]">美国FDA认证</Link></li>
-                <li><Link href="/knowledge-base?market=uk" className="hover:text-[#339999]">英国UKCA认证</Link></li>
-                <li><Link href="/knowledge-base?market=middle_east" className="hover:text-[#339999]">中东GCC认证</Link></li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
-            <p>&copy; 2026 MDLOOKER. 保留所有权利。</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
     </>
   );

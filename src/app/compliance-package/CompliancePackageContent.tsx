@@ -7,35 +7,24 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Checkbox } from "@/components/ui/checkbox";
 import { Progress } from "@/components/ui/progress";
 import { FileText, Download, CheckCircle2, Loader2, AlertCircle } from "lucide-react";
-import { createClient } from "@supabase/supabase-js";
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 const countryOptions = [
-  { value: "eu", label: "European Union (EU)", standards: ["CE Certification", "EU PPE Regulation", "REACH Regulation"] },
-  { value: "us", label: "United States (USA)", standards: ["FDA Certification", "NIOSH Certification", "ASTM Standards"] },
-  { value: "uk", label: "United Kingdom (UK)", standards: ["UKCA Certification", "UK PPE Regulation"] },
-  { value: "cn", label: "China (CN)", standards: ["GB Standards", "Medical Device Registration Certificate"] },
-  { value: "jp", label: "Japan (JP)", standards: ["PSE Certification", "MHLW Certification"] },
-  { value: "kr", label: "South Korea (KR)", standards: ["KC Certification", "KFDA Certification"] },
-  { value: "au", label: "Australia (AU)", standards: ["TGA Certification", "AS/NZS Standards"] },
-  { value: "ca", label: "Canada (CA)", standards: ["CSA Certification", "Health Canada Certification"] },
-  { value: "gcc", label: "Middle East (GCC)", standards: ["GCC Certification", "SASO Standards"] },
-  { value: "asean", label: "ASEAN", standards: ["ASEAN Certification", "Local Access Requirements of Each Country"] },
+  { value: "eu", label: "欧盟（EU）", standards: ["CE 认证要求", "欧盟 PPE 法规", "REACH 法规"] },
+  { value: "us", label: "美国（USA）", standards: ["FDA 认证要求", "NIOSH 认证", "ASTM 标准"] },
+  { value: "uk", label: "英国（UK）", standards: ["UKCA 认证要求", "英国 PPE 法规"] },
+  { value: "cn", label: "中国（CN）", standards: ["GB 标准", "医疗器械注册证"] },
+  { value: "jp", label: "日本（JP）", standards: ["PSE 认证", "厚生劳动省认证"] },
+  { value: "kr", label: "韩国（KR）", standards: ["KC 认证", "KFDA 认证"] },
+  { value: "au", label: "澳大利亚（AU）", standards: ["TGA 认证", "AS/NZS 标准"] },
+  { value: "ca", label: "加拿大（CA）", standards: ["CSA 认证", "加拿大卫生部认证"] },
+  { value: "gcc", label: "中东（GCC）", standards: ["GCC 认证", "SASO 标准"] },
+  { value: "asean", label: "东盟（ASEAN）", standards: ["东盟认证", "各国本地准入要求"] },
 ];
 
 const productTypes = [
-  "Medical Mask", "Protective Mask", "KN95 Mask", "N95 Mask", "FFP2 Mask", "FFP3 Mask", 
-  "Medical Protective Suit", "Isolation Gown", "Disposable Gloves", "Nitrile Gloves", "Latex Gloves", "Goggles", 
-  "Face Shield", "Gas Mask", "Medical Gloves", "Surgical Gown"
-];
-
-const packageTypes = [
-  { id: "basic", name: "Basic Compliance Package", desc: "Includes basic certification requirements, standard document templates", items: ["Certification Requirements List", "Original Standard Regulations", "Application Process Guide"] },
-  { id: "standard", name: "Standard Compliance Package", desc: "Includes all content of basic package + application material templates + testing standards", items: ["All Content of Basic Package", "Application Material Templates", "Testing Standard Documents", "Sample Report Reference"] },
-  { id: "premium", name: "Premium Compliance Package", desc: "Includes all content of standard package + customized solution + expert consulting service", items: ["All Content of Standard Package", "Customized Compliance Solution", "1-on-1 Expert Consultation", "Risk Assessment Report"] },
+  "医用口罩", "防护口罩", "KN95 口罩", "N95 口罩", "FFP2 口罩", "FFP3 口罩", 
+  "医用防护服", "隔离衣", "一次性手套", "丁腈手套", "乳胶手套", "护目镜", 
+  "面屏", "防毒面具", "医用手套", "手术衣"
 ];
 
 export default function CompliancePackageContent() {
@@ -43,7 +32,6 @@ export default function CompliancePackageContent() {
     productName: "",
     productType: "",
     targetCountry: "",
-    packageType: "standard",
     includeTestStandards: true,
     includeTemplates: true,
     includeRiskAssessment: false,
@@ -64,7 +52,7 @@ export default function CompliancePackageContent() {
 
   const generatePackage = async () => {
     if (!formData.productName || !formData.productType || !formData.targetCountry) {
-      setError("Please fill in all required information");
+      setError("请填写所有必填信息");
       return;
     }
 
@@ -96,8 +84,8 @@ export default function CompliancePackageContent() {
 
       // 生成结果
       const baseFiles = [
-        { name: `${formData.targetCountry}市场准入要求清单.docx`, size: "1.2MB", type: "文档" },
-        { name: `${formData.productType}产品认证要求说明.pdf`, size: "2.8MB", type: "PDF" },
+        { name: `${formData.targetCountry.toUpperCase()} 市场准入要求清单.docx`, size: "1.2MB", type: "文档" },
+        { name: `${formData.productType} 产品认证要求说明.pdf`, size: "2.8MB", type: "PDF" },
         { name: "合规申请流程指南.md", size: "320KB", type: "文档" },
       ];
 
@@ -110,21 +98,21 @@ export default function CompliancePackageContent() {
 
       if (formData.includeTestStandards) {
         countryStandards.forEach(standard => {
-          baseFiles.push({ name: `${standard}标准原文.pdf`, size: `${Math.floor(Math.random() * 10 + 2)}MB`, type: "PDF" });
+          baseFiles.push({ name: `${standard} 标准原文.pdf`, size: `${Math.floor(Math.random() * 5 + 2)}MB`, type: "PDF" });
         });
       }
 
       if (formData.includeRiskAssessment) {
-        baseFiles.push({ name: `${formData.productName}合规风险评估报告.docx`, size: "1.8MB", type: "文档" });
+        baseFiles.push({ name: `${formData.productName} 合规风险评估报告.docx`, size: "1.8MB", type: "文档" });
       }
 
       const totalSize = (baseFiles.reduce((sum, f) => sum + parseFloat(f.size), 0)).toFixed(1) + "MB";
 
       setResult({
-        packageName: `${formData.productName}${formData.targetCountry}出口合规包`,
+        packageName: `${formData.productName} ${countryOptions.find(c => c.value === formData.targetCountry)?.label} 出口合规包`,
         files: baseFiles,
         totalSize,
-        warning: countryStandards.length > 0 ? `该产品出口${formData.targetCountry}需要满足${countryStandards.join("、")}等要求，合规包已包含全部相关文档。` : "未查询到对应国家的特殊合规要求，已生成通用合规包。"
+        warning: countryStandards.length > 0 ? `该产品出口 ${countryOptions.find(c => c.value === formData.targetCountry)?.label} 需要满足 ${countryStandards.join("、")} 等要求，合规包已包含全部相关文档。` : "未查询到对应国家的特殊合规要求，已生成通用合规包。"
       });
 
     } catch (err) {
@@ -136,11 +124,11 @@ export default function CompliancePackageContent() {
   };
 
   const downloadPackage = () => {
-    alert("合规包已开始下载，请注意保存文件");
+    alert(`《${result?.packageName}》下载功能正在开发中，如需获取请联系客服 support@mdlooker.com`);
   };
 
   return (
-    <div className="bg-gray-50 py-6">
+    <div className="bg-gray-50 py-6 min-h-screen">
       {/* 页面头部 */}
       <section className="bg-white border-b py-8 mb-8">
         <div className="container mx-auto px-4">
@@ -148,7 +136,7 @@ export default function CompliancePackageContent() {
             <FileText className="h-8 w-8 text-[#339999]" />
             一键生成合规包
           </h1>
-          <p className="text-gray-600">输入产品信息和目标市场，自动生成全套合规文档包，包含认证要求、测试标准、申请材料模板、风险评估报告等</p>
+          <p className="text-xl text-gray-600">输入产品信息和目标市场，自动生成全套合规文档包，包含认证要求、测试标准、申请材料模板。</p>
         </div>
       </section>
 
@@ -159,25 +147,25 @@ export default function CompliancePackageContent() {
             <Card>
               <CardHeader>
                 <CardTitle>基础信息</CardTitle>
-                <CardDescription>填写产品信息和出口目标市场</CardDescription>
+                <CardDescription>填写产品信息和出口目标市场（带 * 为必填）</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <label className="text-sm font-medium text-gray-700 mb-2 block">产品名称 <span className="text-red-500">*</span></label>
+                  <label className="text-sm font-medium text-gray-700 mb-2 block">产品名称 *</label>
                   <Input
-                    placeholder="例如：医用防护口罩N95级"
+                    placeholder="例如：医用防护口罩 N95 级"
                     value={formData.productName}
                     onChange={(e) => handleInputChange("productName", e.target.value)}
                   />
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-gray-700 mb-2 block">产品类型 <span className="text-red-500">*</span></label>
+                  <label className="text-sm font-medium text-gray-700 mb-2 block">产品类型 *</label>
                   <Select 
                     value={formData.productType} 
                     onValueChange={(v) => handleInputChange("productType", v)}
                   >
                     <SelectTrigger>
-                      <SelectValue placeholder="选择产品类型" />
+                      <SelectValue placeholder="请选择产品类型" />
                     </SelectTrigger>
                     <SelectContent>
                       {productTypes.map(type => (
@@ -187,13 +175,13 @@ export default function CompliancePackageContent() {
                   </Select>
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-gray-700 mb-2 block">目标出口国家/地区 <span className="text-red-500">*</span></label>
+                  <label className="text-sm font-medium text-gray-700 mb-2 block">目标出口国家/地区 *</label>
                   <Select 
                     value={formData.targetCountry} 
                     onValueChange={(v) => handleInputChange("targetCountry", v)}
                   >
                     <SelectTrigger>
-                      <SelectValue placeholder="选择目标市场" />
+                      <SelectValue placeholder="请选择目标市场" />
                     </SelectTrigger>
                     <SelectContent>
                       {countryOptions.map(country => (
@@ -211,30 +199,6 @@ export default function CompliancePackageContent() {
                 <CardDescription>选择需要生成的文档内容</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
-                <div>
-                  <label className="text-sm font-medium text-gray-700 mb-3 block">合规包类型</label>
-                  <div className="grid md:grid-cols-3 gap-4">
-                    {packageTypes.map(type => (
-                      <div
-                        key={type.id}
-                        className={`border rounded-lg p-4 cursor-pointer transition-all ${formData.packageType === type.id ? "border-[#339999] bg-[#339999]/5" : "border-gray-200 hover:border-gray-300"}`}
-                        onClick={() => handleInputChange("packageType", type.id)}
-                      >
-                        <div className="font-medium text-gray-900 mb-1">{type.name}</div>
-                        <p className="text-xs text-gray-600 mb-2">{type.desc}</p>
-                        <ul className="text-xs text-gray-500 space-y-1">
-                          {type.items.map((item, idx) => (
-                            <li key={idx} className="flex items-center gap-1">
-                              <CheckCircle2 className="h-3 w-3 text-[#339999]" />
-                              {item}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
                 <div className="space-y-3">
                   <label className="text-sm font-medium text-gray-700 mb-2 block">可选内容</label>
                   <div className="flex items-center space-x-2">
@@ -363,7 +327,7 @@ export default function CompliancePackageContent() {
                   </div>
                   <h3 className="text-gray-700 font-medium mb-2">等待生成合规包</h3>
                   <p className="text-sm text-gray-500 max-w-xs mx-auto">
-                    填写左侧产品信息和目标市场，点击生成按钮，将自动生成全套合规文档包
+                    填写左侧产品信息和目标市场，点击生成按钮，将自动生成全套合规文档包。
                   </p>
                 </CardContent>
               </Card>
