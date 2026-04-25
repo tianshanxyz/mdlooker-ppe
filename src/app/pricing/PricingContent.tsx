@@ -80,93 +80,94 @@ export default function PricingContent() {
     <div className="min-h-screen bg-gray-50">
       <Navbar />
       <div className="py-12">
-      <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto mb-12 text-center">
-          <ShieldCheck className="h-12 w-12 text-[#339999] mx-auto mb-4" />
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">简单透明的定价方案</h1>
-          <p className="text-xl text-gray-600">
-            选择适合您的方案，助力外贸业务合规出海。所有方案均包含7天无理由退款保障。
-          </p>
-        </div>
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto mb-12 text-center">
+            <ShieldCheck className="h-12 w-12 text-[#339999] mx-auto mb-4" />
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">简单透明的定价方案</h1>
+            <p className="text-xl text-gray-600">
+              选择适合您的方案，助力外贸业务合规出海。所有方案均包含7天无理由退款保障。
+            </p>
+          </div>
 
-        <div className="max-w-6xl mx-auto mb-6 bg-yellow-50 border border-yellow-200 rounded-xl p-4 text-center">
-          <p className="text-yellow-800 text-sm">⚠️ 在线支付功能正在开发中，如需升级套餐请联系客服 <a href="mailto:sales@mdlooker.com" className="underline font-medium">sales@mdlooker.com</a> 办理</p>
-        </div>
+          <div className="max-w-6xl mx-auto mb-6 bg-yellow-50 border border-yellow-200 rounded-xl p-4 text-center">
+            <p className="text-yellow-800 text-sm">⚠️ 在线支付功能正在开发中，如需升级套餐请联系客服 <a href="mailto:sales@mdlooker.com" className="underline font-medium">sales@mdlooker.com</a> 办理</p>
+          </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
-          {pricingPlans.map((plan, index) => (
-            <Card key={index} className={`relative h-full flex flex-col ${plan.popular ? 'border-[#339999] shadow-lg' : 'border-gray-200 hover:shadow-md transition-shadow'}`}>
-              {plan.popular && (
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-[#339999] text-white text-xs font-semibold px-3 py-1 rounded-full">
-                  最受欢迎
-                </div>
-              )}
-              <CardHeader className={`text-center ${plan.popular ? 'pb-6' : 'pb-8'}`}>
-                <CardTitle className="text-xl font-bold">{plan.name}</CardTitle>
-                <CardDescription className="mt-2 h-12">{plan.description}</CardDescription>
-                <div className="mt-4">
-                  <span className="text-4xl font-bold text-gray-900">{plan.price}</span>
-                  {plan.name !== "企业版" && <span className="text-gray-500 ml-1">/年</span>}
-                </div>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <ul className="space-y-3">
-                  {plan.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-start gap-3">
-                      {feature.available ? (
-                        <Check className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                      ) : (
-                        <X className="h-5 w-5 text-gray-400 mt-0.5 flex-shrink-0" />
-                      )}
-                      <span className={`text-sm ${feature.available ? 'text-gray-700' : 'text-gray-500'}`}>
-                        {feature.name}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-              <CardFooter>
-                {plan.name === "企业版" ? (
-                  <Link href="mailto:sales@mdlooker.com" className="w-full">
-                    <Button className={`w-full ${plan.popular ? 'bg-[#339999] hover:bg-[#2d8a8a]' : 'bg-gray-800 hover:bg-gray-900'} text-white`}>
-                      {plan.cta} <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </Link>
-                ) : plan.name === "Pro版" ? (
-                  <Button 
-                    className="w-full bg-[#339999] hover:bg-[#2d8a8a] text-white"
-                    onClick={() => alert("在线支付功能正在开发中，如需升级Pro版请联系客服 sales@mdlooker.com 办理")}
-                  >
-                    {plan.cta} <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                ) : (
-                  <Link href="/compliance-check" className="w-full">
-                    <Button className="w-full bg-gray-800 hover:bg-gray-900 text-white">
-                      {plan.cta} <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </Link>
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
+            {pricingPlans.map((plan, index) => (
+              <Card key={index} className={`relative h-full flex flex-col ${plan.popular ? 'border-[#339999] shadow-lg' : 'border-gray-200 hover:shadow-md transition-shadow'}`}>
+                {plan.popular && (
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-[#339999] text-white text-xs font-semibold px-3 py-1 rounded-full">
+                    最受欢迎
+                  </div>
                 )}
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
-
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl font-bold text-center mb-8 text-gray-900">常见问题</h2>
-          <div className="space-y-6">
-            {faq.map((item, index) => (
-              <div key={index} className="bg-white p-6 rounded-xl border border-gray-200">
-                <h3 className="font-semibold text-lg text-gray-900 mb-2">{item.question}</h3>
-                <p className="text-gray-600">{item.answer}</p>
-              </div>
+                <CardHeader className={`text-center ${plan.popular ? 'pb-6' : 'pb-8'}`}>
+                  <CardTitle className="text-xl font-bold">{plan.name}</CardTitle>
+                  <CardDescription className="mt-2 h-12">{plan.description}</CardDescription>
+                  <div className="mt-4">
+                    <span className="text-4xl font-bold text-gray-900">{plan.price}</span>
+                    {plan.name !== "企业版" && <span className="text-gray-500 ml-1">/年</span>}
+                  </div>
+                </CardHeader>
+                <CardContent className="flex-grow">
+                  <ul className="space-y-3">
+                    {plan.features.map((feature, featureIndex) => (
+                      <li key={featureIndex} className="flex items-start gap-3">
+                        {feature.available ? (
+                          <Check className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                        ) : (
+                          <X className="h-5 w-5 text-gray-400 mt-0.5 flex-shrink-0" />
+                        )}
+                        <span className={`text-sm ${feature.available ? 'text-gray-700' : 'text-gray-500'}`}>
+                          {feature.name}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+                <CardFooter>
+                  {plan.name === "企业版" ? (
+                    <Link href="mailto:sales@mdlooker.com" className="w-full">
+                      <Button className={`w-full ${plan.popular ? 'bg-[#339999] hover:bg-[#2d8a8a]' : 'bg-gray-800 hover:bg-gray-900'} text-white`}>
+                        {plan.cta} <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </Link>
+                  ) : plan.name === "Pro版" ? (
+                    <Button 
+                      className="w-full bg-[#339999] hover:bg-[#2d8a8a] text-white"
+                      onClick={() => alert("在线支付功能正在开发中，如需升级Pro版请联系客服 sales@mdlooker.com 办理")}
+                    >
+                      {plan.cta} <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  ) : (
+                    <Link href="/compliance-check" className="w-full">
+                      <Button className="w-full bg-gray-800 hover:bg-gray-900 text-white">
+                        {plan.cta} <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </Link>
+                  )}
+                </CardFooter>
+              </Card>
             ))}
           </div>
 
-          <div className="text-center mt-12">
-            <p className="text-gray-600 mb-4">还有其他问题？随时联系我们的客服团队</p>
-            <Link href="mailto:support@mdlooker.com">
-              <Button variant="secondary">联系客服</Button>
-            </Link>
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-2xl font-bold text-center mb-8 text-gray-900">常见问题</h2>
+            <div className="space-y-6">
+              {faq.map((item, index) => (
+                <div key={index} className="bg-white p-6 rounded-xl border border-gray-200">
+                  <h3 className="font-semibold text-lg text-gray-900 mb-2">{item.question}</h3>
+                  <p className="text-gray-600">{item.answer}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="text-center mt-12">
+              <p className="text-gray-600 mb-4">还有其他问题？随时联系我们的客服团队</p>
+              <Link href="mailto:support@mdlooker.com">
+                <Button variant="secondary">联系客服</Button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
