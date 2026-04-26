@@ -98,7 +98,7 @@ export default function CompliancePackageContent() {
 
       if (formData.includeTestStandards) {
         countryStandards.forEach(standard => {
-          baseFiles.push({ name: `${standard} 标准原文.pdf`, size: `${Math.floor(Math.random() * 5 + 2)}MB`, type: "PDF" });
+          baseFiles.push({ name: `${standard} 标准原文.pdf`, size: `${Math.floor(Math.random() * 2 + 1)}MB`, type: "PDF" });
         });
       }
 

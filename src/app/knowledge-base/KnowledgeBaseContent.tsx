@@ -1,9 +1,10 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { FileText, Search, ExternalLink, Loader2, AlertCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { FileText, Search, ExternalLink, Loader2 } from "lucide-react";
 import Link from "next/link";
 
 // 静态法规数据
@@ -146,14 +147,33 @@ export default function KnowledgeBaseContent() {
         {/* 搜索和筛选区域 */}
         <div className="max-w-4xl mx-auto mb-8 bg-white p-6 rounded-xl shadow-sm border border-gray-200">
           <div className="space-y-4">
-            <div className="relative">
-              <Search className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-              <Input 
-                placeholder="搜索法规名称、标准标题或内容..." 
-                className="pl-10 h-12 text-base"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
+            <div className="flex gap-2">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+                <Input 
+                  placeholder="搜索法规名称、标准标题或内容..." 
+                  className="pl-10 h-12 text-base"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      // 触发搜索
+                      setLoading(true);
+                      setTimeout(() => setLoading(false), 300);
+                    }
+                  }}
+                />
+              </div>
+              <Button 
+                className="h-12 px-6 bg-[#339999] hover:bg-[#2d8a8a] text-white"
+                onClick={() => {
+                  setLoading(true);
+                  setTimeout(() => setLoading(false), 300);
+                }}
+              >
+                <Search className="h-5 w-5 mr-2" />
+                搜索
+              </Button>
             </div>
             <div className="grid md:grid-cols-2 gap-4">
               <div className="space-y-2">

@@ -1,11 +1,9 @@
 'use client';
-import { useState, useEffect } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useState } from 'react';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { FileText, Download, Globe, FileCheck, FileIcon } from "lucide-react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import { Download, Globe, FileCheck, FileIcon } from "lucide-react";
 
 // 静态模板数据
 const templates = [
@@ -165,9 +163,8 @@ export default function TemplatesContent() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
-      <Navbar />
-      <div className="container mx-auto px-4 py-12 flex-grow">
+    <div className="bg-gray-50 py-12">
+      <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto mb-12 text-center">
           <img src="/logo.png" alt="MDLOOKER Logo" className="h-12 w-12 mx-auto mb-4" />
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">合规文档模板库</h1>
@@ -271,7 +268,6 @@ export default function TemplatesContent() {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }
