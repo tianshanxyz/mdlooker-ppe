@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -7,6 +8,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Checkbox } from "@/components/ui/checkbox";
 import { Progress } from "@/components/ui/progress";
 import { FileText, Download, CheckCircle2, Loader2, AlertCircle } from "lucide-react";
+import { createClient } from "@/app/lib/supabase";
 
 const countryOptions = [
   { value: "eu", label: "欧盟（EU）", standards: ["CE 认证要求", "欧盟 PPE 法规", "REACH 法规"] },
@@ -28,6 +30,8 @@ const productTypes = [
 ];
 
 export default function CompliancePackageContent() {
+  const supabase = createClient();
+  const router = useRouter();
   const [formData, setFormData] = useState({
     productName: "",
     productType: "",
@@ -123,8 +127,14 @@ export default function CompliancePackageContent() {
     }
   };
 
-  const downloadPackage = () => {
-    alert(`《${result?.packageName}》下载功能正在开发中，如需获取请联系客服 support@mdlooker.com`);
+  const downloadPackage = async () => {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) {
+      alert('请先登录账号后下载合规包');
+      router.push('/auth');
+      return;
+    }
+    alert(`《${result?.packageName}》下载功能已开通，登录后即可下载，正式文件地址正在配置中，如需获取请联系客服 support@mdlooker.com`);
   };
 
   return (

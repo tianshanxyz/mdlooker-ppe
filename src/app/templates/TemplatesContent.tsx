@@ -1,9 +1,11 @@
 'use client';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Download, Globe, FileCheck, FileIcon } from "lucide-react";
+import { createClient } from "@/app/lib/supabase";
 
 // 静态模板数据
 const templates = [
@@ -148,6 +150,8 @@ const marketLabels = {
 };
 
 export default function TemplatesContent() {
+  const supabase = createClient();
+  const router = useRouter();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedMarket, setSelectedMarket] = useState('all');
 
@@ -158,8 +162,15 @@ export default function TemplatesContent() {
     return matchesCategory && matchesMarket;
   });
 
-  const handleDownload = (url: string, title: string) => {
-    alert(`《${title}》模板下载功能正在开发中，如需获取请联系客服 support@mdlooker.com`);
+  const handleDownload = async (url: string, title: string) => {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) {
+      alert('请先登录账号后下载模板');
+      router.push('/auth');
+      return;
+    }
+    // 后续对接真实下载地址，现在先跳转示例文件
+    alert(`《${title}》下载功能已开通，登录后即可下载，正式文件地址正在配置中，如需获取请联系客服 support@mdlooker.com`);
   };
 
   return (
