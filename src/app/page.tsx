@@ -3,8 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { ShieldCheck, FileText, Calculator, Globe, Check } from "lucide-react";
 import Link from "next/link";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -43,12 +41,8 @@ export default function Home() {
           ])
         }}
       />
-      <div className="min-h-screen flex flex-col">
-      {/* Navigation */}
-      <Navbar />
-
       {/* Hero Section */}
-      <section className="flex-1 bg-gradient-to-br from-[#339999]/5 to-white py-20">
+      <section className="bg-gradient-to-br from-[#339999]/5 to-white py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
@@ -211,9 +205,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <Footer />
-    </div>
     </>
   );
 }
