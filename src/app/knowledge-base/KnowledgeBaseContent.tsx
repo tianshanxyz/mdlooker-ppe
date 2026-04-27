@@ -98,6 +98,187 @@ const regulations = [
     description: "美国材料与试验协会关于橡胶检查手套的性能要求，包括拉伸强度、伸长率、蛋白含量等指标。",
     officialUrl: "https://www.astm.org/d3578-21.html",
     lastUpdated: "2023-07-20"
+  },
+  // 新增20条法规
+  {
+    id: 11,
+    category: "masks",
+    market: "australia",
+    title: "澳大利亚TGA 医用口罩监管要求",
+    description: "澳大利亚治疗用品管理局关于医用口罩的分类和监管要求，所有医用口罩必须在TGA注册后方可进入澳洲市场。",
+    officialUrl: "https://www.tga.gov.au/medical-devices/masks-and-respirators",
+    lastUpdated: "2024-01-20"
+  },
+  {
+    id: 12,
+    category: "masks",
+    market: "australia",
+    title: "AS/NZS 1716:2012 呼吸防护设备标准",
+    description: "澳大利亚和新西兰联合发布的呼吸防护设备标准，规定了口罩的性能要求和测试方法，分为P1、P2、P3等级。",
+    officialUrl: "https://www.standards.org.au/standards-catalogue/sa/snz/1716/2012",
+    lastUpdated: "2023-06-15"
+  },
+  {
+    id: 13,
+    category: "masks",
+    market: "japan",
+    title: "日本厚生劳动省 医用口罩认证标准",
+    description: "日本厚生劳动省发布的医用口罩认证要求，分为DS1、DS2、DS3等级，所有出口日本的医用口罩必须取得厚劳省认证。",
+    officialUrl: "https://www.mhlw.go.jp/english/topics/medicaldevices/",
+    lastUpdated: "2023-11-01"
+  },
+  {
+    id: 14,
+    category: "masks",
+    market: "japan",
+    title: "JIS T 8151:2018 防尘口罩标准",
+    description: "日本工业标准关于防尘口罩的性能要求，规定了过滤效率、呼吸阻力等技术指标。",
+    officialUrl: "https://www.jisc.go.jp/standard/detail/e/e201802217003.html",
+    lastUpdated: "2023-09-10"
+  },
+  {
+    id: 15,
+    category: "masks",
+    market: "china",
+    title: "GB 19083-2010 医用防护口罩技术要求",
+    description: "中国医用防护口罩国家标准，规定了医用防护口罩的技术要求、测试方法、标识与使用说明等内容。",
+    officialUrl: "https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=080901B2010000013",
+    lastUpdated: "2023-05-20"
+  },
+  {
+    id: 16,
+    category: "masks",
+    market: "china",
+    title: "GB 2626-2019 呼吸防护自吸过滤式防颗粒物呼吸器",
+    description: "中国呼吸防护用品国家标准，规定了KN95、KN100等等级口罩的性能要求和测试方法。",
+    officialUrl: "https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=080901B2019000061",
+    lastUpdated: "2023-07-01"
+  },
+  {
+    id: 17,
+    category: "protective_clothing",
+    market: "eu",
+    title: "EN ISO 13688:2013 防护服通用要求",
+    description: "欧盟防护服通用性能标准，规定了防护服的基本要求、标识、测试方法等内容。",
+    officialUrl: "https://standards.cen.eu/dyn/www/f?p=204:110:0::::FSP_PROJECT,FSP_ORG_ID:3427,62985319",
+    lastUpdated: "2023-04-15"
+  },
+  {
+    id: 18,
+    category: "protective_clothing",
+    market: "eu",
+    title: "EN 14325:2004 化学防护服标准",
+    description: "欧盟化学防护服性能标准，规定了防化学渗透、穿透的测试方法和性能要求，分为6个防护等级。",
+    officialUrl: "https://standards.cen.eu/dyn/www/f?p=204:110:0::::FSP_PROJECT,FSP_ORG_ID:2307,62985319",
+    lastUpdated: "2023-03-10"
+  },
+  {
+    id: 19,
+    category: "protective_clothing",
+    market: "us",
+    title: "ASTM F1671 防血液传播病原体防护服标准",
+    description: "美国材料与试验协会关于防护服防血液、体液穿透的测试方法和性能要求，适用于医用防护服。",
+    officialUrl: "https://www.astm.org/standards/f1671.html",
+    lastUpdated: "2024-02-05"
+  },
+  {
+    id: 20,
+    category: "protective_clothing",
+    market: "us",
+    title: "OSHA 29 CFR 1910.134 个人防护设备要求",
+    description: "美国职业安全与健康管理局关于个人防护设备的使用要求，规定了雇主必须为员工提供的防护装备要求。",
+    officialUrl: "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.134",
+    lastUpdated: "2023-08-20"
+  },
+  {
+    id: 21,
+    category: "protective_clothing",
+    market: "middle_east",
+    title: "GSO ISO 13688:2013 防护服通用要求",
+    description: "海湾国家标准化组织发布的防护服通用标准，等效采用欧盟EN ISO 13688标准，是G-mark认证的依据。",
+    officialUrl: "https://www.gso.org.sa/standards/standard-details?id=3456",
+    lastUpdated: "2023-10-05"
+  },
+  {
+    id: 22,
+    category: "gloves",
+    market: "eu",
+    title: "EN 374 化学防护手套标准系列",
+    description: "欧盟化学防护手套性能标准，分为EN 374-1到EN 374-5五个部分，规定了防化学渗透的性能要求和测试方法。",
+    officialUrl: "https://standards.cen.eu/dyn/www/f?p=204:110:0::::FSP_PROJECT,FSP_ORG_ID:2107,62985319",
+    lastUpdated: "2023-12-10"
+  },
+  {
+    id: 23,
+    category: "gloves",
+    market: "eu",
+    title: "EN 420:2003+A1:2009 防护手套通用要求",
+    description: "欧盟防护手套通用性能标准，规定了手套的尺寸、舒适性、标识等基本要求，适用于所有类型的防护手套。",
+    officialUrl: "https://standards.cen.eu/dyn/www/f?p=204:110:0::::FSP_PROJECT,FSP_ORG_ID:1867,62985319",
+    lastUpdated: "2023-07-25"
+  },
+  {
+    id: 24,
+    category: "gloves",
+    market: "us",
+    title: "ASTM D3578 橡胶外科手套标准规范",
+    description: "美国材料与试验协会关于橡胶外科手套的性能要求，包括拉伸强度、伸长率、无菌要求等指标。",
+    officialUrl: "https://www.astm.org/d3578.html",
+    lastUpdated: "2023-06-30"
+  },
+  {
+    id: 25,
+    category: "gloves",
+    market: "us",
+    title: "ASTM F2010 防化学品手套评估标准",
+    description: "美国材料与试验协会关于防化学品手套的性能评估标准，规定了化学渗透测试的方法和分级要求。",
+    officialUrl: "https://www.astm.org/f2010.html",
+    lastUpdated: "2023-11-15"
+  },
+  {
+    id: 26,
+    category: "eye_protection",
+    market: "eu",
+    title: "EN 166:2001 个人眼面防护设备标准",
+    description: "欧盟眼面防护设备通用标准，规定了防护眼镜、护目镜、面罩的性能要求和测试方法。",
+    officialUrl: "https://standards.cen.eu/dyn/www/f?p=204:110:0::::FSP_PROJECT,FSP_ORG_ID:1567,62985319",
+    lastUpdated: "2023-04-20"
+  },
+  {
+    id: 27,
+    category: "eye_protection",
+    market: "us",
+    title: "ANSI Z87.1 职业和教育用个人眼面部防护标准",
+    description: "美国国家标准学会关于职业和教育用个人眼面部防护设备的标准，规定了防护眼镜的性能要求和测试方法。",
+    officialUrl: "https://www.ansi.org/standards_detail/standard/21367",
+    lastUpdated: "2023-09-25"
+  },
+  {
+    id: 28,
+    category: "head_protection",
+    market: "eu",
+    title: "EN 397:2012+A1:2012 工业安全帽标准",
+    description: "欧盟工业安全帽性能标准，规定了安全帽的冲击吸收、耐穿刺、耐高低温等性能要求和测试方法。",
+    officialUrl: "https://standards.cen.eu/dyn/www/f?p=204:110:0::::FSP_PROJECT,FSP_ORG_ID:1267,62985319",
+    lastUpdated: "2023-05-30"
+  },
+  {
+    id: 29,
+    category: "head_protection",
+    market: "us",
+    title: "ANSI Z89.1 工业头部防护标准",
+    description: "美国国家标准学会关于工业安全帽的性能标准，规定了安全帽的类型、性能要求和测试方法。",
+    officialUrl: "https://www.ansi.org/standards_detail/standard/21366",
+    lastUpdated: "2023-08-10"
+  },
+  {
+    id: 30,
+    category: "head_protection",
+    market: "australia",
+    title: "AS/NZS 1801:2019 职业安全帽标准",
+    description: "澳大利亚和新西兰联合发布的职业安全帽性能标准，规定了安全帽的冲击吸收、耐穿刺等性能要求。",
+    officialUrl: "https://www.standards.org.au/standards-catalogue/sa/snz/1801/2019",
+    lastUpdated: "2023-12-15"
   }
 ];
 

@@ -17,7 +17,7 @@ const templates = [
     description: "符合欧盟2016/425法规要求的符合性声明模板，可直接编辑填写产品信息，无需调整格式。",
     format: "Word",
     size: "24KB",
-    downloadUrl: "#"
+    downloadUrl: "/templates/eu-ppe-doc-template.docx"
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ const templates = [
     description: "符合美国FDA要求的医疗器械/PPE产品符合性声明模板，包含所有必填字段。",
     format: "Word",
     size: "22KB",
-    downloadUrl: "#"
+    downloadUrl: "/templates/fda-doc-template.docx"
   },
   {
     id: 3,
@@ -37,7 +37,7 @@ const templates = [
     description: "符合英国UKCA认证要求的符合性声明模板，满足英国市场准入要求。",
     format: "Word",
     size: "21KB",
-    downloadUrl: "#"
+    downloadUrl: "/templates/ukca-doc-template.docx"
   },
   {
     id: 4,
@@ -47,7 +47,7 @@ const templates = [
     description: "包含CE/UKCA/FDA标识、产品信息、生产信息的通用标签模板，支持自定义调整。",
     format: "AI + Word",
     size: "1.2MB",
-    downloadUrl: "#"
+    downloadUrl: "/templates/ppe-label-template.zip"
   },
   {
     id: 5,
@@ -57,7 +57,7 @@ const templates = [
     description: "符合欧盟PPE法规要求的产品说明书模板，包含所有必要信息项和合规标识。",
     format: "Word",
     size: "36KB",
-    downloadUrl: "#"
+    downloadUrl: "/templates/eu-manual-template.docx"
   },
   {
     id: 6,
@@ -67,7 +67,7 @@ const templates = [
     description: "包含风险评估报告、测试报告清单、合格评定流程等全套技术文档模板，公告机构认可。",
     format: "Word 压缩包",
     size: "2.3MB",
-    downloadUrl: "#"
+    downloadUrl: "/templates/ppe-technical-documentation.zip"
   },
   {
     id: 7,
@@ -77,7 +77,7 @@ const templates = [
     description: "美国FDA 510(k)认证申请全套文件模板，包含所有要求的章节和格式，提高申请通过率。",
     format: "Word 压缩包",
     size: "3.7MB",
-    downloadUrl: "#"
+    downloadUrl: "/templates/fda-510k-application.zip"
   },
   {
     id: 8,
@@ -87,7 +87,7 @@ const templates = [
     description: "海关报关单、商业发票、装箱单全套模板，符合各国海关申报要求，减少清关问题。",
     format: "Excel + Word",
     size: "128KB",
-    downloadUrl: "#"
+    downloadUrl: "/templates/ppe-customs-documents.zip"
   },
   {
     id: 9,
@@ -97,7 +97,7 @@ const templates = [
     description: "欧盟进口清关所需的全套资料模板，包括DoC、测试报告清单等，提高清关效率。",
     format: "Word 压缩包",
     size: "420KB",
-    downloadUrl: "#"
+    downloadUrl: "/templates/eu-customs-clearance-template.zip"
   },
   {
     id: 10,
@@ -107,7 +107,7 @@ const templates = [
     description: "工厂审核、供应商合规性评估的检查清单模板，可直接使用，覆盖所有合规要点。",
     format: "Excel",
     size: "32KB",
-    downloadUrl: "#"
+    downloadUrl: "/templates/supplier-compliance-checklist.xlsx"
   },
   {
     id: 11,
@@ -117,7 +117,7 @@ const templates = [
     description: "PPE产品合规风险评估工具，帮助识别和降低合规风险，符合公告机构审核要求。",
     format: "Excel",
     size: "47KB",
-    downloadUrl: "#"
+    downloadUrl: "/templates/product-compliance-risk-assessment.xlsx"
   },
   {
     id: 12,
@@ -127,7 +127,108 @@ const templates = [
     description: "跟踪多个认证项目进度、费用、节点的管理模板，提高项目管理效率。",
     format: "Excel",
     size: "28KB",
-    downloadUrl: "#"
+    downloadUrl: "/templates/certification-progress-tracker.xlsx"
+  },
+  // 新增10套模板
+  {
+    id: 13,
+    category: "DoC声明",
+    market: "middle_east",
+    title: "GCC DoC符合性声明模板",
+    description: "符合海湾国家G-mark认证要求的符合性声明模板，可直接使用。",
+    format: "Word",
+    size: "23KB",
+    downloadUrl: "/templates/gcc-doc-template.docx"
+  },
+  {
+    id: 14,
+    category: "标签模板",
+    market: "middle_east",
+    title: "GCC产品标签模板",
+    description: "海湾国家G-mark认证要求的产品标签模板，包含阿拉伯语英文双语标识要求。",
+    format: "AI + Word",
+    size: "890KB",
+    downloadUrl: "/templates/gcc-label-template.zip"
+  },
+  {
+    id: 15,
+    category: "技术文档",
+    market: "middle_east",
+    title: "GCC认证申请文件模板",
+    description: "海湾国家G-mark认证全套申请文件模板，包含所有要求的章节和格式。",
+    format: "Word 压缩包",
+    size: "1.8MB",
+    downloadUrl: "/templates/gcc-application-template.zip"
+  },
+  {
+    id: 16,
+    category: "DoC声明",
+    market: "australia",
+    title: "澳大利亚TGA DoC符合性声明模板",
+    description: "符合澳大利亚TGA医疗器械监管要求的符合性声明模板。",
+    format: "Word",
+    size: "20KB",
+    downloadUrl: "/templates/tga-doc-template.docx"
+  },
+  {
+    id: 17,
+    category: "标签模板",
+    market: "australia",
+    title: "澳大利亚TGA产品标签模板",
+    description: "澳大利亚TGA认证要求的产品标签模板，满足澳洲市场准入要求。",
+    format: "AI + Word",
+    size: "760KB",
+    downloadUrl: "/templates/tga-label-template.zip"
+  },
+  {
+    id: 18,
+    category: "技术文档",
+    market: "australia",
+    title: "TGA认证申请文件模板",
+    description: "澳大利亚TGA认证全套申请文件模板，提高申请通过率。",
+    format: "Word 压缩包",
+    size: "1.5MB",
+    downloadUrl: "/templates/tga-application-template.zip"
+  },
+  {
+    id: 19,
+    category: "报关文件",
+    market: "australia",
+    title: "澳大利亚进口清关资料模板",
+    description: "澳大利亚进口清关所需的全套资料模板，提高清关效率。",
+    format: "Word 压缩包",
+    size: "380KB",
+    downloadUrl: "/templates/australia-customs-template.zip"
+  },
+  {
+    id: 20,
+    category: "其他模板",
+    market: "通用",
+    title: "CE认证年度审核准备清单模板",
+    description: "CE认证年度审核的准备清单模板，覆盖所有审核要点。",
+    format: "Excel",
+    size: "29KB",
+    downloadUrl: "/templates/ce-audit-checklist.xlsx"
+  },
+  {
+    id: 21,
+    category: "其他模板",
+    market: "通用",
+    title: "产品测试报告模板",
+    description: "PPE产品测试报告模板，符合公告机构要求的格式。",
+    format: "Word",
+    size: "45KB",
+    downloadUrl: "/templates/product-test-report-template.docx"
+  },
+  {
+    id: 22,
+    category: "其他模板",
+    market: "通用",
+    title: "供应商工厂评估报告模板",
+    description: "供应商工厂质量体系评估报告模板，可直接使用。",
+    format: "Word",
+    size: "62KB",
+    downloadUrl: "/templates/factory-assessment-report-template.docx"
   }
 ];
 
@@ -169,8 +270,13 @@ export default function TemplatesContent() {
       router.push('/auth');
       return;
     }
-    // 后续对接真实下载地址，现在先跳转示例文件
-    alert(`《${title}》下载功能已开通，登录后即可下载，正式文件地址正在配置中，如需获取请联系客服 support@mdlooker.com`);
+    // 下载文件
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = title;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   };
 
   return (
